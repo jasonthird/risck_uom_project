@@ -1,0 +1,21 @@
+.Menu {
+    -fx-background-color: #FFFFFF ;
+}
+.RoundButton {
+    -fx-background-radius: 5em;
+    -fx-border-radius: 5em;
+    -fx-border-width: 2;
+    -fx-min-width: 60px;
+    -fx-min-height: 60px;
+    -fx-max-width: 60px;
+    -fx-max-height: 60px;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CF2A27;
+    -fx-accent: #0093ff;
+    -fx-background-insets: 0px;
+    -fx-padding: 0px;
+    -fx-font-size: 22;
+}
+.toggle-button:selected {
+    -fx-background-color: black;
+}
