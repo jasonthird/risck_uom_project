@@ -5,7 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="20.0" styleClass="Menu" stylesheets="@GuiStyle.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.GameLogic">
+<VBox alignment="CENTER" spacing="20.0" styleClass="Menu" stylesheets="@GuiStyle.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.BoardController">
     <children>
         <Label fx:id="playersText" text="Secondary View" />
         <Button fx:id="secondaryButton" onAction="#switchToPrimary" text="Switch to Primary View" />

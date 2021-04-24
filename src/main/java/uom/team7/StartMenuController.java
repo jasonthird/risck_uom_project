@@ -14,9 +14,8 @@ public class StartMenuController {
     @FXML
     private void startGameButton() throws IOException {
         ToggleButton selectedButton = (ToggleButton) NumPlayers.getSelectedToggle();
-        System.out.println(selectedButton.getText());
-        GameLogic game = new GameLogic(Integer.parseInt(selectedButton.getText()));
-        //game.startGame();
+        //System.out.println(selectedButton.getText());
+        App.startGame(Integer.parseInt(selectedButton.getText()));
     }
 
 }

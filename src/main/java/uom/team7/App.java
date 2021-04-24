@@ -10,7 +10,6 @@ import java.io.IOException;
 
 public class App extends Application {
     private static Scene scene;
-
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("StartMenu"), 640, 480);
@@ -29,6 +28,9 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+    public static void startGame(int n) throws IOException {
+        GameLogic game = new GameLogic(n);
     }
 
 }
