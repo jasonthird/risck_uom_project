@@ -142,7 +142,7 @@ public class TestMain {
     //Calculate the attack result*
     public void attackResult(Country own,Country enemy){
         if(enemy.numTroops == 0) {
-            own.getOwner().winCard();
+           // own.getOwner().winCard();
             own.getOwner().addCountry(enemy);
             enemy.getOwner().removeCountry(enemy);
         }
