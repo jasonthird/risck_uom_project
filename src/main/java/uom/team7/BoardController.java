@@ -13,8 +13,8 @@ public class BoardController {
     @FXML
     Label playersText;
 
-    public void changeText(String n) {
-        playersText.setText("Game with "+n+" players");
+    public void changeText(String s) {
+        playersText.setText(s);
     }
 
     @FXML

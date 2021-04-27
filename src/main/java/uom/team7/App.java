@@ -30,7 +30,7 @@ public class App extends Application {
         launch();
     }
     public static void startGame(int n) throws IOException {
-        GameLogic game = new GameLogic(n);
+        GameLogic game = new GameLogic(n,scene);
     }
 
 }
