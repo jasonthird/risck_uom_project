@@ -2,7 +2,7 @@ package uom.team7;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 
 /* Player object which represents the information pertaining to
@@ -21,7 +21,7 @@ public class Player {
         unsedTroops = 0;
         dead = false;
         won = false;
-        countriesOwned = new ArrayList<Country>();
+        countriesOwned = new ArrayList<>();
     }
 
     //Check if the player has no owned countries left(dead)

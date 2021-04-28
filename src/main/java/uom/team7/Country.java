@@ -1,13 +1,14 @@
 package uom.team7;
 
-import java.util.*;
 
-public class Country {
+import java.util.TreeSet;
+
+public class Country implements Comparable<Country>{
 
     private final String name;
     int numTroops;
     private Player owner;
-    Set<Country> adjacentCountries; //*
+    TreeSet<Country> adjacentCountries;
 
 
     public Country (String name) {
@@ -49,5 +50,10 @@ public class Country {
 
     public String toString(){
         return  this.name ;
+    }
+
+    @Override
+    public int compareTo(Country o) {
+        return 0;
     }
 }

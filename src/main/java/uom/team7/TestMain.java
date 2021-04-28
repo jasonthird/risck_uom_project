@@ -1,6 +1,5 @@
 package uom.team7;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
 
 
 public class TestMain {
@@ -8,16 +7,25 @@ public class TestMain {
     public static void main(String[] args) {
 
         //Initialize game components
-        int numPlayers = 6;// User.getSelectedValue
+        int numPlayers = 2;
+        int numOfTrades = 4;
+
         Player[] players = initializePlayers(numPlayers);
         Country[] countries = initializeCountries();
         initializeCountryOwners(countries,players,numPlayers);
 
+        Cards redeemCards = new Cards();
+        redeemCards.addCards(0,1);
+        redeemCards.addCards(1,1);
+        redeemCards.addCards(2,1);
+        players[1].cards.addCards(0,0);
+        players[1].cards.addCards(1,0);
+        players[1].cards.addCards(2,0);
+        numOfTrades = players[1].cards.redeemCards(redeemCards,numOfTrades);
+        numOfTrades = players[1].cards.redeemCards(redeemCards,numOfTrades);
 
-        for (int i = 0; i <numPlayers; i++){
-            System.out.println("Player "+ i+ players[i].countriesOwned.toString() + " Troops to place " + players[1].toString());
 
-        }
+
 
     }
 
@@ -45,10 +53,9 @@ public class TestMain {
                 unsedTroops = 20;
                 break;
             default : throw new IllegalStateException("Unexpected value: " + numPlayers);
-        };
+        }
         for (int i = 0; i < numPlayers; i++) {
             players[i] = new Player();
-            players[i].initialHand();
             players[i].setUnsedTroops(unsedTroops);
         }
         return players;
@@ -99,6 +106,180 @@ public class TestMain {
         countries[39] = new Country("Western Australia");
         countries[40] = new Country("Eastern Australia");
         countries[41] = new Country("New Guinea");
+
+
+        countries[0].adjacentCountries = new TreeSet<>();
+        countries[0].adjacentCountries.add(countries[1]);
+        countries[0].adjacentCountries.add(countries[5]);
+        countries[0].adjacentCountries.add(countries[36]);
+
+        countries[1].adjacentCountries = new TreeSet<>();
+        countries[1].adjacentCountries.add(countries[5]);
+        countries[1].adjacentCountries.add(countries[6]);
+        countries[1].adjacentCountries.add(countries[8]);
+
+        countries[2].adjacentCountries = new TreeSet<>();
+        countries[2].adjacentCountries.add(countries[3]);
+        countries[2].adjacentCountries.add(countries[8]);
+        countries[2].adjacentCountries.add(countries[9]);
+
+        countries[3].adjacentCountries = new TreeSet<>();
+        countries[3].adjacentCountries.add(countries[6]);
+        countries[3].adjacentCountries.add(countries[7]);
+        countries[3].adjacentCountries.add(countries[8]);
+
+        countries[4].adjacentCountries = new TreeSet<>();
+        countries[4].adjacentCountries.add(countries[5]);
+        countries[4].adjacentCountries.add(countries[6]);
+        countries[4].adjacentCountries.add(countries[7]);
+        countries[4].adjacentCountries.add(countries[14]);
+
+        countries[5].adjacentCountries = new TreeSet<>();
+        countries[5].adjacentCountries.add(countries[6]);
+
+        countries[6].adjacentCountries = new TreeSet<>();
+        countries[6].adjacentCountries.add(countries[7]);
+        countries[6].adjacentCountries.add(countries[8]);
+
+        countries[7].adjacentCountries = new TreeSet<>();
+
+        countries[8].adjacentCountries = new TreeSet<>();
+
+        countries[9].adjacentCountries = new TreeSet<>();
+        countries[9].adjacentCountries.add(countries[10]);
+        countries[9].adjacentCountries.add(countries[11]);
+
+        countries[10].adjacentCountries = new TreeSet<>();
+        countries[10].adjacentCountries.add(countries[11]);
+        countries[10].adjacentCountries.add(countries[12]);
+        countries[10].adjacentCountries.add(countries[22]);
+
+        countries[11].adjacentCountries = new TreeSet<>();
+        countries[11].adjacentCountries.add(countries[12]);
+
+        countries[12].adjacentCountries = new TreeSet<>();
+
+        countries[13].adjacentCountries = new TreeSet<>();
+        countries[13].adjacentCountries.add(countries[14]);
+        countries[13].adjacentCountries.add(countries[15]);
+        countries[13].adjacentCountries.add(countries[16]);
+        countries[13].adjacentCountries.add(countries[19]);
+
+        countries[14].adjacentCountries = new TreeSet<>();
+
+        countries[15].adjacentCountries = new TreeSet<>();
+        countries[15].adjacentCountries.add(countries[16]);
+        countries[15].adjacentCountries.add(countries[17]);
+        countries[15].adjacentCountries.add(countries[18]);
+        countries[15].adjacentCountries.add(countries[19]);
+
+        countries[16].adjacentCountries = new TreeSet<>();
+        countries[16].adjacentCountries.add(countries[17]);
+
+        countries[17].adjacentCountries = new TreeSet<>();
+        countries[17].adjacentCountries.add(countries[18]);
+        countries[17].adjacentCountries.add(countries[26]);
+        countries[17].adjacentCountries.add(countries[27]);
+        countries[17].adjacentCountries.add(countries[28]);
+
+        countries[18].adjacentCountries = new TreeSet<>();
+        countries[18].adjacentCountries.add(countries[19]);
+        countries[18].adjacentCountries.add(countries[21]);
+        countries[18].adjacentCountries.add(countries[22]);
+        countries[18].adjacentCountries.add(countries[26]);
+
+        countries[19].adjacentCountries = new TreeSet<>();
+        countries[19].adjacentCountries.add(countries[22]);
+
+        countries[20].adjacentCountries = new TreeSet<>();
+        countries[20].adjacentCountries.add(countries[23]);
+        countries[20].adjacentCountries.add(countries[25]);
+
+        countries[21].adjacentCountries = new TreeSet<>();
+        countries[21].adjacentCountries.add(countries[22]);
+        countries[21].adjacentCountries.add(countries[23]);
+        countries[21].adjacentCountries.add(countries[26]);
+
+        countries[22].adjacentCountries = new TreeSet<>();
+        countries[22].adjacentCountries.add(countries[23]);
+        countries[22].adjacentCountries.add(countries[24]);
+
+        countries[23].adjacentCountries = new TreeSet<>();
+        countries[23].adjacentCountries.add(countries[24]);
+        countries[23].adjacentCountries.add(countries[25]);
+        countries[23].adjacentCountries.add(countries[26]);
+
+        countries[24].adjacentCountries = new TreeSet<>();
+        countries[24].adjacentCountries.add(countries[25]);
+
+        countries[25].adjacentCountries = new TreeSet<>();
+
+        countries[26].adjacentCountries = new TreeSet<>();
+        countries[26].adjacentCountries.add(countries[27]);
+        countries[26].adjacentCountries.add(countries[29]);
+
+        countries[27].adjacentCountries = new TreeSet<>();
+        countries[27].adjacentCountries.add(countries[28]);
+        countries[27].adjacentCountries.add(countries[29]);
+        countries[27].adjacentCountries.add(countries[30]);
+
+        countries[28].adjacentCountries = new TreeSet<>();
+        countries[28].adjacentCountries.add(countries[30]);
+        countries[28].adjacentCountries.add(countries[31]);
+
+        countries[29].adjacentCountries = new TreeSet<>();
+        countries[29].adjacentCountries.add(countries[30]);
+        countries[29].adjacentCountries.add(countries[32]);
+
+        countries[30].adjacentCountries = new TreeSet<>();
+        countries[30].adjacentCountries.add(countries[31]);
+        countries[30].adjacentCountries.add(countries[32]);
+        countries[30].adjacentCountries.add(countries[33]);
+
+        countries[31].adjacentCountries = new TreeSet<>();
+        countries[31].adjacentCountries.add(countries[33]);
+        countries[31].adjacentCountries.add(countries[34]);
+        countries[31].adjacentCountries.add(countries[35]);
+
+        countries[32].adjacentCountries = new TreeSet<>();
+        countries[32].adjacentCountries.add(countries[38]);
+
+        countries[33].adjacentCountries = new TreeSet<>();
+        countries[33].adjacentCountries.add(countries[34]);
+        countries[33].adjacentCountries.add(countries[36]);
+        countries[33].adjacentCountries.add(countries[37]);
+
+        countries[34].adjacentCountries = new TreeSet<>();
+        countries[34].adjacentCountries.add(countries[35]);
+        countries[34].adjacentCountries.add(countries[36]);
+
+        countries[35].adjacentCountries = new TreeSet<>();
+        countries[35].adjacentCountries.add(countries[36]);
+
+        countries[36].adjacentCountries = new TreeSet<>();
+        countries[36].adjacentCountries.add(countries[37]);
+
+        countries[37].adjacentCountries = new TreeSet<>();
+
+        countries[38].adjacentCountries = new TreeSet<>();
+        countries[38].adjacentCountries.add(countries[39]);
+        countries[38].adjacentCountries.add(countries[41]);
+
+        countries[39].adjacentCountries = new TreeSet<>();
+        countries[39].adjacentCountries.add(countries[40]);
+        countries[39].adjacentCountries.add(countries[41]);
+
+        countries[40].adjacentCountries = new TreeSet<>();
+        countries[40].adjacentCountries.add(countries[41]);
+
+        countries[41].adjacentCountries = new TreeSet<>();
+
+        for (Country country : countries) {
+            for (Country c : country.adjacentCountries) {
+                c.adjacentCountries.add(country);
+            }
+        }
+
         return  countries;
     }
 
@@ -107,7 +288,7 @@ public class TestMain {
         Collections.shuffle(Arrays.asList(countries));
         int playerID = 0;
         for (Country country : countries) {
-            players[playerID].countriesOwned.add(country);// πρεπει να δινουμε τυχαια τις περιοχες
+            players[playerID].countriesOwned.add(country);
             playerID = (playerID + 1) % numPlayers;
         }
     }
@@ -163,8 +344,7 @@ public class TestMain {
 
     //calculate the number of troops the player receives at the begging of the turn
     public static void updateUnsedTroops(Player player) {
-        int numTroops;
-        numTroops = (player.countriesOwned.size() / 3); // + continent_bonus?
+        int numTroops = (player.countriesOwned.size() / 3); // + continent_bonus?
         player.setUnsedTroops(Math.max(3, numTroops));
 
     }

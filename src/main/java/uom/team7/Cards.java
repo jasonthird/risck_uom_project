@@ -1,31 +1,31 @@
 package uom.team7;
 
-
 import java.util.Arrays;
 import java.util.Random;
 
 public class Cards {
-    private int[] numberCards;
+    private  int[] numberCards;
 
     public Cards(){
-        // 0 = troop , 1 = cavalary , 2 = artilery
-        int[] numberCards = new int[3];
+        // 0 = troop , 1 = cavalry , 2 = artillery
+        numberCards = new int[3];
         Arrays.fill(numberCards,0);
     }
 
+
     //Add the defeated players cards to the winner(defPlayer = dead)
-    public void winnerTakesCards(Cards DefCards){
+    public void winnerTakesCards(Cards defCards){
         for(int i = 0; i < this.numberCards.length; i++){
-            this.numberCards[i] += DefCards.getCards()[i];
+            this.numberCards[i] += defCards.getCards()[i];
         }
     }
 
     //Check if the player has more cards than limit
     public boolean fullHandCheck(){
         int sum = 0;
-        for (int i = 0; i < numberCards.length; i++) {
-            sum += numberCards[i];
-            if (sum >= 5)  return true;
+        for (int numberCard : numberCards) {
+            sum += numberCard;
+            if (sum >= 5) return true;
         }
         return false;
     }
@@ -39,24 +39,36 @@ public class Cards {
         }
     }
 
-    //Remove the selected ammount of cards from players hand to redeem them *
-    //If it returns -1 it means that it failed
+    //Remove the selected amount of cards from players hand to redeem them
     public int redeemCards(Cards givenCards, int numOfTrades){
-        int RCards[] = givenCards.getCards();
-        for (int i=0;i<3;i++){
-            if(RCards[i]==3){
-                if((numberCards[i]-RCards[i])>=3){
-                    numberCards[i]==numberCards[i]-RCards[i];
-                    return true;
-                }
+        int[] rCards = givenCards.getCards();
 
-
+        //trade 3 cards of the same type,check if the player has that amount of cards
+        for (int i = 0; i < 3; i++) {
+            if ( (rCards[i] == 3) && (numberCards[i] >= 3) ){
+                    numberCards[i] -= rCards[i];
+                    return  numOfTrades += 2;
             }
         }
+
+        //trade cards one of each type,check if the player has that amount of cards
+        if( (rCards[0] == 1) && (rCards[1] == 1) && (rCards[2] == 1 ) ){
+            if( (numberCards[0] >= 1) && (numberCards[1] >= 1) && (numberCards[2] >= 1) ){
+                 numberCards[0] -= rCards[0];
+                 numberCards[1] -= rCards[1];
+                 numberCards[2] -= rCards[2];
+                 return  numOfTrades += 2;
+            }
+        }
+        return  numOfTrades;
     }
 
+    public void addCards(int i,int num){
 
-    //Gets cards xd
+            numberCards[i] += num;
+
+    }
+
     public int[] getCards() {
         return numberCards;
     }
