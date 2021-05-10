@@ -31,12 +31,13 @@ public class Cards {
     }
 
     //The player takes only one card if he won until the end of attack phase
-    public void winCard(boolean wonCard) {
+    public boolean winCard(boolean wonCard) {
         if (!wonCard) {
             Random r = new Random();
             numberCards[r.nextInt(3)]++;
             wonCard = true;
         }
+        return false;
     }
 
     //Remove the selected amount of cards from players hand to redeem them
@@ -52,24 +53,24 @@ public class Cards {
         }
 
         //trade cards one of each type,check if the player has that amount of cards
-        if( (rCards[0] == 1) && (rCards[1] == 1) && (rCards[2] == 1 ) ){
-            if( (numberCards[0] >= 1) && (numberCards[1] >= 1) && (numberCards[2] >= 1) ){
+        if( (rCards[0] == rCards[1] ) && (rCards[0] == rCards[2]) && (rCards[0] > 0) ){
+            if( (numberCards[0] >= rCards[0]) && (numberCards[1] >= rCards[0]) && (numberCards[2] >= rCards[0]) ){
                  numberCards[0] -= rCards[0];
                  numberCards[1] -= rCards[1];
                  numberCards[2] -= rCards[2];
-                 return  numOfTrades += 2;
+                 return  numOfTrades += 2 * rCards[0];
             }
         }
+        //invalid trade
+        else{ return 0; }
+
         return  numOfTrades;
-    }
-
-    public void addCards(int i,int num){
-
-            numberCards[i] += num;
-
     }
 
     public int[] getCards() {
         return numberCards;
     }
+
+    public void addCards(int i,int num){ numberCards[i] += num; }
+
 }

@@ -10,12 +10,12 @@
     -fx-max-width: 60px;
     -fx-max-height: 60px;
     -fx-background-color: #FFFFFF;
-    -fx-border-color: #CF2A27;
     -fx-accent: #0093ff;
     -fx-background-insets: 0px;
     -fx-padding: 0px;
     -fx-font-size: 22;
 }
 .toggle-button:selected {
-    -fx-background-color: black;
+    -fx-background-color:   #0fea88;
 }
+

@@ -5,32 +5,41 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.io.File;
 
+import javax.print.attribute.standard.Media;
+import java.io.File;
 import java.io.IOException;
 
 public class App extends Application {
-    private static Scene scene;
+
+    private static Scene StartMenu;
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("StartMenu"), 640, 480);
-        stage.setScene(scene);
+
+        StartMenu = new Scene(loadFXML(), 800, 600);
+        stage.setTitle("Risck");
+        stage.setScene(StartMenu);
+        stage.setResizable(false);
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    static void setRoot() throws IOException {
+        StartMenu.setRoot(loadFXML());
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+    private static Parent loadFXML() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("FXML/StartMenu.fxml"));
         return fxmlLoader.load();
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
-    public static void startGame(int n) throws IOException {
-        GameLogic game = new GameLogic(n,scene);
+
+    public static void startGame(int numPlayers) throws IOException {
+        new GameLogic(numPlayers, StartMenu);
     }
+
 
 }

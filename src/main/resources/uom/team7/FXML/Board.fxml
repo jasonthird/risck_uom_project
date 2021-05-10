@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="parentAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="843.0" prefWidth="1200.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/11.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.BoardController">
+   <children>
+      <ImageView fitHeight="809.0" fitWidth="1166.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="130.21026611328125" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../images/board.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="166.0" layoutY="164.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="256.0" layoutY="265.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="167.0" layoutY="245.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="238.0" layoutY="177.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="315.0" layoutY="177.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="401.0" layoutY="53.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="178.0" layoutY="91.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="67.0" layoutY="91.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="250.0" layoutY="425.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="338.0" layoutY="496.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="291.0" layoutY="534.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="279.0" layoutY="620.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="178.0" layoutY="353.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="578.0" layoutY="144.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="683.0" layoutY="200.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="589.0" layoutY="239.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="611.0" layoutY="308.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="489.0" layoutY="353.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="489.0" layoutY="239.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="501.0" layoutY="132.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="819.0" layoutY="177.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="883.0" layoutY="104.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="968.0" layoutY="79.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="956.0" layoutY="177.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="1076.0" layoutY="79.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="979.0" layoutY="252.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="932.0" layoutY="333.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="796.0" layoutY="265.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="860.0" layoutY="386.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="728.0" layoutY="373.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="683.0" layoutY="508.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="634.0" layoutY="431.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="529.0" layoutY="470.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="634.0" layoutY="569.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="634.0" layoutY="670.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="751.0" layoutY="683.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="1030.0" layoutY="670.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="1110.0" layoutY="645.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="1087.0" layoutY="534.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="982.0" layoutY="556.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="957.0" layoutY="425.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button layoutX="1087.0" layoutY="265.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <AnchorPane layoutY="797.0" prefHeight="78.0" prefWidth="1200.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox layoutX="284.0" layoutY="13.0" prefHeight="51.0" prefWidth="669.0" AnchorPane.bottomAnchor="14.0">
+               <children>
+                  <Label prefHeight="44.0" prefWidth="138.0" text="UPKEEP" textFill="#777d78">
+                     <font>
+                        <Font name="Cambria Bold Italic" size="36.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="214.0" style="-fx-background-color: #777d78; -fx-background-radius: 5em;" text="ATTACK">
+                     <HBox.margin>
+                        <Insets left="80.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Cambria Bold" size="30.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="50.0" layoutY="10.0" prefHeight="44.0" prefWidth="158.0" text="FORTIFY" textFill="#777d78">
+                     <font>
+                        <Font name="Cambria Bold Italic" size="36.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="80.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <Button layoutX="1101.0" layoutY="9.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#tradeCardsButton" prefHeight="50.0" prefWidth="70.0" style="-fx-background-color: #0fea88; -fx-background-radius: 2em;" AnchorPane.bottomAnchor="15.0">
+               <graphic>
+                  <ImageView fitHeight="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/noun_Cards_20461.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ImageView fitHeight="76.0" fitWidth="75.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0">
+               <image>
+                  <Image url="@../images/troops.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="80.0" layoutY="37.0" text="x N" textFill="WHITE" AnchorPane.bottomAnchor="-6.0">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button fx:id="closeButton" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#switchToStartMenu" prefHeight="28.0" prefWidth="32.0" style="-fx-background-color: #bd1111; -fx-background-radius: 10em;" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <font>
+            <Font name="Cambria" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="15.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="1161.0" layoutY="3.0" mnemonicParsing="false" style="-fx-background-radius: 10em; -fx-background-color: #28252e;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/skip.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Label layoutX="507.0" prefHeight="38.0" prefWidth="165.0" text="   PLAYER #  " textFill="WHITE" AnchorPane.leftAnchor="507.0" AnchorPane.rightAnchor="528.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="Cambria" size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

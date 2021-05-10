@@ -17,10 +17,6 @@ public class Country implements Comparable<Country>{
     }
 
 
-    //Add numTroops to the currently country(fortify)
-    public void addNumTroops(int numTroops){
-        numTroops += numTroops;
-    }
 
     //Remove numTroops from the currently country after 1.fortify or 2.attack result
     public void removeNumTroops(int numTroops){

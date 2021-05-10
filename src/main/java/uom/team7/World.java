@@ -1,39 +1,42 @@
 package uom.team7;
-import java.util.*;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.TreeSet;
+
+public class World{
+
+    public Player[] players;
+    public Country[] countries;
+    public int numOfTrades;
 
 
-public class TestMain {
+    public World(int numPlayers) {
 
-    public static void main(String[] args) {
-
-        //Initialize game components
-        int numPlayers = 2;
         int numOfTrades = 4;
-
-        Player[] players = initializePlayers(numPlayers);
-        Country[] countries = initializeCountries();
-        initializeCountryOwners(countries,players,numPlayers);
-
-        Cards redeemCards = new Cards();
-        redeemCards.addCards(0,1);
-        redeemCards.addCards(1,1);
-        redeemCards.addCards(2,1);
-        players[1].cards.addCards(0,0);
-        players[1].cards.addCards(1,0);
-        players[1].cards.addCards(2,0);
-        numOfTrades = players[1].cards.redeemCards(redeemCards,numOfTrades);
-        numOfTrades = players[1].cards.redeemCards(redeemCards,numOfTrades);
-
-
-
+        countries = initializeCountries();
+        players = initializePlayers(numPlayers);
+        initializeCountryOwners(countries, players, numPlayers);
 
     }
 
+    public int getNumOfTrades() { return numOfTrades; }
 
+    public Player getPlayer(int i){ return players[i]; }
 
+    //fortify one country only
+    public void fortify(Country country, int numOfTroops){
+        country.setNumTroops(numOfTroops);
+    }
 
-    //initialize the players and their cards in hand
-    public static Player[] initializePlayers(int numPlayers) {
+    //move a number of troops from a countryA to countryB
+    public void moveArmy(Country country1,Country country2,int numOfTroops){
+        country1.setNumTroops(numOfTroops);
+        country2.removeNumTroops(numOfTroops);
+    }
+
+    //create the players and initialize the unsedTroops
+    public  Player[] initializePlayers(int numPlayers) {
         int unsedTroops;
         Player[] players = new Player[numPlayers];
         switch (numPlayers) {
@@ -62,7 +65,7 @@ public class TestMain {
     }
 
     //Create a list of countries and all the 42 countries
-    public  static Country[] initializeCountries(){
+    public   Country[] initializeCountries(){
         Country[] countries = new Country[42];
         countries[0] = new Country("Alaska");
         countries[1] = new Country("Alberta" );
@@ -284,16 +287,17 @@ public class TestMain {
     }
 
     //initialize country owners
-    public static void initializeCountryOwners(Country[] countries, Player[] players, int numPlayers){
+    public  void initializeCountryOwners(Country[] countries, Player[] players, int numPlayers){
         Collections.shuffle(Arrays.asList(countries));
         int playerID = 0;
         for (Country country : countries) {
             players[playerID].countriesOwned.add(country);
+            country.setOwner(players[playerID]);
             playerID = (playerID + 1) % numPlayers;
         }
     }
 
-    //Implementation of attack*
+    //Implementation of attack
     public void attack(Country own,Country enemy){
         int[] attacker = new int[3];
         int[] defender = new int[2];
@@ -320,17 +324,16 @@ public class TestMain {
         }
     }
 
-    //Calculate the attack result*
+    //Calculate the attack result
     public void attackResult(Country own,Country enemy){
         if(enemy.numTroops == 0) {
-           // own.getOwner().winCard();
             own.getOwner().addCountry(enemy);
             enemy.getOwner().removeCountry(enemy);
         }
     }
 
     //check win condition
-    public void checkWin(Player [] players) {
+    public boolean checkWin(Player [] players) {
         int countDead = 0;
         for (Player p : players) {
             if (p.statusCheck()) {
@@ -338,12 +341,13 @@ public class TestMain {
             }
         }
         if (players.length-1 == countDead) {
-            System.exit(0);
+            return true;
         }
+        return false;
     }
 
     //calculate the number of troops the player receives at the begging of the turn
-    public static void updateUnsedTroops(Player player) {
+    public  void updateUnsedTroops(Player player) {
         int numTroops = (player.countriesOwned.size() / 3); // + continent_bonus?
         player.setUnsedTroops(Math.max(3, numTroops));
 
@@ -355,4 +359,3 @@ public class TestMain {
     }
 
 }
-

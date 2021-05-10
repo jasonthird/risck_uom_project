@@ -13,14 +13,13 @@ public class Player {
     Cards cards;
     int unsedTroops;
     boolean dead;
-    boolean won;
+    boolean wonCard;
     List<Country> countriesOwned;
 
     public Player(){
         cards = new Cards();
         unsedTroops = 0;
         dead = false;
-        won = false;
         countriesOwned = new ArrayList<>();
     }
 
@@ -32,6 +31,10 @@ public class Player {
         else{
             return  dead = false;
         }
+    }
+
+    public void setWonCard(boolean wonCard) {
+        this.wonCard = wonCard;
     }
 
     public void removeTroops(int numTroops){
@@ -46,7 +49,9 @@ public class Player {
         countriesOwned.remove(country);
     }
 
-
+    public boolean isWonCard() {
+        return wonCard;
+    }
 
     /*Setters & Getters*/
     public int getUnsedTroops() {
@@ -57,4 +62,8 @@ public class Player {
         this.unsedTroops = unsedTroops;
     }
 
+    public boolean isOwned(Country country) {
+        return countriesOwned.contains(country);
+
+    }
 }
