@@ -4,7 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.File;
 
 import javax.print.attribute.standard.Media;
@@ -13,19 +16,24 @@ import java.io.IOException;
 
 public class App extends Application {
 
+    private static Stage primaryStage;
     private static Scene StartMenu;
     @Override
     public void start(Stage stage) throws IOException {
-
+        primaryStage = stage;
         StartMenu = new Scene(loadFXML(), 800, 600);
-        stage.setTitle("Risck");
-        stage.setScene(StartMenu);
-        stage.setResizable(false);
-        stage.show();
+
+        primaryStage.getIcons().add(new Image(("file:uom/team7/images/skip.png")));
+        primaryStage.setTitle("Risck");
+
+        primaryStage.setScene(StartMenu);
+        primaryStage.setResizable(false);
+        primaryStage.centerOnScreen();
+        primaryStage.show();
     }
 
-    static void setRoot() throws IOException {
-        StartMenu.setRoot(loadFXML());
+    static void setRoot(Scene scene) throws IOException {
+        scene.setRoot(loadFXML());
     }
 
     private static Parent loadFXML() throws IOException {
@@ -38,7 +46,7 @@ public class App extends Application {
     }
 
     public static void startGame(int numPlayers) throws IOException {
-        new GameLogic(numPlayers, StartMenu);
+        new GameLogic(numPlayers, primaryStage);
     }
 
 

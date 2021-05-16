@@ -3,6 +3,7 @@ package uom.team7;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,21 +15,24 @@ public class GameLogic {
     private Player[] players;
     private Country[] countries;
 
-    public GameLogic(int numPlayers,Scene scene) throws IOException {
+    public GameLogic(int numPlayers,Stage stage) throws IOException {
 
         //Game initialization
         World world = new World(numPlayers);
-        //close current stage
-        Stage stage = (Stage) scene.getWindow();
-        stage.close();
+
+
         //create a new stage
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getResource("FXML/Board.fxml"));
-            Stage board = new Stage();
-            board.setTitle("RISK");
-            board.setScene(new Scene(root, 1200, 900));
-            board.show();
+            stage.setScene(new Scene(root, 1200, 900));
+            Image image = new Image("file:uom/team7/images/settings.png");
+            stage.getIcons().add(image);
+            stage.centerOnScreen();
+            stage.show();
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("FXML/Board.fxml"));
+            BoardController boardController = fxmlLoader.getController();
+
 
         }
         catch (IOException e) {

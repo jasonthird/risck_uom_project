@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="parentAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="843.0" prefWidth="1200.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/11.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.BoardController">
+<AnchorPane fx:id="parentAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="843.0" prefWidth="1200.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.BoardController">
    <children>
       <ImageView fitHeight="809.0" fitWidth="1166.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="130.21026611328125" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -88,9 +88,9 @@
                   </Label>
                </children>
             </HBox>
-            <Button layoutX="1101.0" layoutY="9.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#tradeCardsButton" prefHeight="50.0" prefWidth="70.0" style="-fx-background-color: #0fea88; -fx-background-radius: 2em;" AnchorPane.bottomAnchor="15.0">
+            <Button layoutX="1117.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#tradeCardsButton" prefHeight="55.0" prefWidth="60.0" style="-fx-background-color: #0fea88; -fx-background-radius: 7em;" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
                <graphic>
-                  <ImageView fitHeight="45.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="50.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" rotate="32.7">
                      <image>
                         <Image url="@../images/noun_Cards_20461.png" />
                      </image>
@@ -109,7 +109,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="closeButton" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#switchToStartMenu" prefHeight="28.0" prefWidth="32.0" style="-fx-background-color: #bd1111; -fx-background-radius: 10em;" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <Button fx:id="closeButton" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#switchToStartMenu" prefHeight="28.0" prefWidth="23.0" style="-fx-background-color: #bd1111; -fx-background-radius: 2;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="Cambria" size="15.0" />
          </font>

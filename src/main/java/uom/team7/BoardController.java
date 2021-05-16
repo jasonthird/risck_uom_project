@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class BoardController {
     private Stage stage;
@@ -33,12 +34,9 @@ public class BoardController {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getResource("FXML/StartMenu.fxml"));
-            Stage board = new Stage();
-            board.setTitle("RISK");
-            board.setScene(new Scene(root, 800, 600));
-            board.setResizable(false);
-            board.show();
-
+            stage.setScene(new Scene(root, 800, 600));
+            stage.centerOnScreen();
+            stage.show();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -54,6 +52,8 @@ public class BoardController {
             stage.setTitle("RISK");
             stage.setScene(new Scene(root, 300, 370));
             stage.setResizable(false);
+            //stage.initStyle(StageStyle.UNDECORATED);
+            stage.centerOnScreen();
             stage.show();
 
         }
