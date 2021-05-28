@@ -17,9 +17,8 @@ public class StartMenuController {
 
     @FXML
     private ToggleGroup NumPlayers;
-    public AnchorPane parentAnchor;
-    @FXML
-    private Button startGameButton;
+
+
     @FXML
     private void startGameButton() throws IOException {
 
@@ -40,7 +39,4 @@ public class StartMenuController {
         java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
     }
 
-    public void lightMode(MouseEvent mouseEvent) {
-        parentAnchor.getStyleClass().add("parentAnchor");
-    }
 }

@@ -32,10 +32,9 @@ public class Cards {
 
     //The player takes only one card if he won until the end of attack phase
     public boolean winCard(boolean wonCard) {
-        if (!wonCard) {
+        if ( wonCard ) {
             Random r = new Random();
             numberCards[r.nextInt(3)]++;
-            wonCard = true;
         }
         return false;
     }

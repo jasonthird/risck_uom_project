@@ -1,94 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="parentAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="843.0" prefWidth="1200.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.BoardController">
+<AnchorPane fx:id="parentAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="843.0" prefWidth="1200.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.BoardController">
    <children>
       <ImageView fitHeight="809.0" fitWidth="1166.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="130.21026611328125" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../images/board.png" />
          </image>
       </ImageView>
-      <Button layoutX="166.0" layoutY="164.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="256.0" layoutY="265.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="167.0" layoutY="245.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="238.0" layoutY="177.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="315.0" layoutY="177.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="401.0" layoutY="53.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="178.0" layoutY="91.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="67.0" layoutY="91.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="250.0" layoutY="425.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="338.0" layoutY="496.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="291.0" layoutY="534.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="279.0" layoutY="620.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="178.0" layoutY="353.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="578.0" layoutY="144.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="683.0" layoutY="200.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="589.0" layoutY="239.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="611.0" layoutY="308.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="489.0" layoutY="353.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="489.0" layoutY="239.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="501.0" layoutY="132.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="819.0" layoutY="177.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="883.0" layoutY="104.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="968.0" layoutY="79.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="956.0" layoutY="177.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="1076.0" layoutY="79.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="979.0" layoutY="252.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="932.0" layoutY="333.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="796.0" layoutY="265.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="860.0" layoutY="386.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="728.0" layoutY="373.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="683.0" layoutY="508.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="634.0" layoutY="431.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="529.0" layoutY="470.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="634.0" layoutY="569.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="634.0" layoutY="670.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="751.0" layoutY="683.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="1030.0" layoutY="670.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="1110.0" layoutY="645.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="1087.0" layoutY="534.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="982.0" layoutY="556.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="957.0" layoutY="425.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
-      <Button layoutX="1087.0" layoutY="265.0" mnemonicParsing="false" style="-fx-background-radius: 2em;" text="1" />
+      <Button fx:id="Alberta" layoutX="158.0" layoutY="149.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="EastUS" layoutX="246.0" layoutY="264.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="WestUS" layoutX="158.0" layoutY="244.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Ontario" layoutX="238.0" layoutY="170.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Quebec" layoutX="318.0" layoutY="165.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Greenland" layoutX="398.0" layoutY="39.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="NorthTerritory" layoutX="163.0" layoutY="84.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Alaska" layoutX="58.0" layoutY="84.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Venezuela" layoutX="246.0" layoutY="418.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Brazil" layoutX="338.0" layoutY="488.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Peru" layoutX="275.0" layoutY="521.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Argentina" layoutX="286.0" layoutY="605.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="CentralAmerica" layoutX="178.0" layoutY="353.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Scandinavia" layoutX="569.0" layoutY="137.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Ukraine" layoutX="691.0" layoutY="182.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="NorthEurope" layoutX="580.0" layoutY="232.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="SouthEurope" layoutX="600.0" layoutY="304.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="WestEurope" layoutX="485.0" layoutY="344.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Britain" layoutX="485.0" layoutY="232.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Iceland" layoutX="497.0" layoutY="124.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Ural" layoutX="807.0" layoutY="162.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Siberia" layoutX="874.0" layoutY="104.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Yakutsk" layoutX="956.0" layoutY="64.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Irkutsk" layoutX="948.0" layoutY="169.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Kamchatka" layoutX="1055.0" layoutY="70.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Mongolia" layoutX="956.0" layoutY="245.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="China" layoutX="924.0" layoutY="313.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Kazakhstan" layoutX="795.0" layoutY="257.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="India" layoutX="860.0" layoutY="386.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="MiddleEast" layoutX="711.0" layoutY="364.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="EastAfrica" layoutX="671.0" layoutY="501.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Egypt" layoutX="630.0" layoutY="430.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="NorthAfrica" layoutX="537.0" layoutY="458.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Congo" layoutX="630.0" layoutY="561.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="SouthAfrica" layoutX="640.0" layoutY="663.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Madagascar" layoutX="744.0" layoutY="675.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="WestAustralia" layoutX="1024.0" layoutY="663.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="EastAustralia" layoutX="1083.0" layoutY="625.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="NewGuinea" layoutX="1075.0" layoutY="521.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Indonesia" layoutX="975.0" layoutY="547.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Siam" layoutX="948.0" layoutY="410.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
+      <Button fx:id="Japan" layoutX="1083.0" layoutY="257.0" mnemonicParsing="false" onAction="#loadWhenClicked" styleClass="CountryButton" stylesheets="@../GuiStyle.css" />
       <AnchorPane layoutY="797.0" prefHeight="78.0" prefWidth="1200.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <HBox layoutX="284.0" layoutY="13.0" prefHeight="51.0" prefWidth="669.0" AnchorPane.bottomAnchor="14.0">
+            <HBox layoutX="288.0" prefHeight="78.0" prefWidth="624.0" AnchorPane.bottomAnchor="0.0">
                <children>
-                  <Label prefHeight="44.0" prefWidth="138.0" text="UPKEEP" textFill="#777d78">
+                  <Label fx:id="upkeepLabel" prefHeight="44.0" prefWidth="138.0" styleClass="UpkeepFortifyLabel" stylesheets="@../GuiStyle.css" text="UPKEEP">
                      <font>
-                        <Font name="Cambria Bold Italic" size="36.0" />
+                        <Font name="Cambria Bold" size="36.0" />
                      </font>
                      <HBox.margin>
-                        <Insets />
+                        <Insets top="20.0" />
                      </HBox.margin>
                   </Label>
-                  <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="214.0" style="-fx-background-color: #777d78; -fx-background-radius: 5em;" text="ATTACK">
+                  <Button fx:id="attackButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="54.0" prefWidth="177.0" styleClass="AttackButtonOf" stylesheets="@../GuiStyle.css" text="ATTACK">
                      <HBox.margin>
-                        <Insets left="80.0" />
+                        <Insets left="80.0" top="14.0" />
                      </HBox.margin>
                      <font>
                         <Font name="Cambria Bold" size="30.0" />
                      </font>
                   </Button>
-                  <Label layoutX="50.0" layoutY="10.0" prefHeight="44.0" prefWidth="158.0" text="FORTIFY" textFill="#777d78">
+                  <Label fx:id="fortifyLabel" layoutX="50.0" layoutY="10.0" prefHeight="44.0" prefWidth="149.0" styleClass="FortifyLabel" stylesheets="@../GuiStyle.css" text="FORTIFY" textFill="#777d78">
                      <font>
-                        <Font name="Cambria Bold Italic" size="36.0" />
+                        <Font name="Cambria Bold" size="36.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="80.0" />
+                        <Insets left="80.0" top="20.0" />
                      </HBox.margin>
                   </Label>
                </children>
             </HBox>
-            <Button layoutX="1117.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#tradeCardsButton" prefHeight="55.0" prefWidth="60.0" style="-fx-background-color: #0fea88; -fx-background-radius: 7em;" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+            <Button fx:id="tradeButton" layoutX="1117.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#tradeCardsButton" prefHeight="55.0" prefWidth="60.0" style="-fx-background-color: #0fea88; -fx-background-radius: 7em;" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="50.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" rotate="32.7">
                      <image>
@@ -102,7 +102,7 @@
                   <Image url="@../images/troops.png" />
                </image>
             </ImageView>
-            <Label layoutX="80.0" layoutY="37.0" text="x N" textFill="WHITE" AnchorPane.bottomAnchor="-6.0">
+            <Label fx:id="unsedTroopsLabel" layoutX="80.0" layoutY="37.0" text="x N" textFill="WHITE" AnchorPane.bottomAnchor="-6.0">
                <font>
                   <Font size="36.0" />
                </font>
@@ -121,18 +121,22 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="1161.0" layoutY="3.0" mnemonicParsing="false" style="-fx-background-radius: 10em; -fx-background-color: #28252e;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+      <Button fx:id="skipButton" layoutX="1161.0" layoutY="3.0" mnemonicParsing="false" style="-fx-background-radius: 10em; -fx-background-color: #28252e;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
          <graphic>
-            <ImageView fitHeight="25.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="41.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/skip.png" />
                </image>
             </ImageView>
          </graphic></Button>
-      <Label layoutX="507.0" prefHeight="38.0" prefWidth="165.0" text="   PLAYER #  " textFill="WHITE" AnchorPane.leftAnchor="507.0" AnchorPane.rightAnchor="528.0" AnchorPane.topAnchor="0.0">
-         <font>
-            <Font name="Cambria" size="30.0" />
-         </font>
-      </Label>
+      <Pane layoutX="521.0" layoutY="11.0" prefHeight="35.0" prefWidth="158.0" style="-fx-border-color: white; -fx-border-radius: 5em; -fx-border-width: 3;" AnchorPane.leftAnchor="521.0" AnchorPane.topAnchor="11.0">
+         <children>
+            <Label fx:id="playerLabel" layoutX="14.0" layoutY="-1.0" prefHeight="38.0" prefWidth="149.0" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

@@ -7,13 +7,9 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="300.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.TradeCardsController">
    <children>
-      <Button fx:id="closeButton" layoutX="24.0" layoutY="353.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#BackButton" prefHeight="26.0" prefWidth="80.0" style="-fx-background-color: #bd1111; -fx-background-radius: 5em;" text="BACK" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="27.0">
+      <Button layoutX="193.0" layoutY="324.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #0fea88; -fx-background-radius: 5em;" text="TRADE" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="27.0">
          <font>
-            <Font size="14.0" />
-         </font></Button>
-      <Button layoutX="193.0" layoutY="352.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #0fea88; -fx-background-radius: 5em;" text="TRADE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="27.0">
-         <font>
-            <Font name="Cambria" size="14.0" />
+            <Font name="Cambria" size="18.0" />
          </font>
       </Button>
       <AnchorPane layoutX="12.0" minWidth="-Infinity" prefHeight="295.0" prefWidth="276.0" style="-fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 2em;" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0">
@@ -38,24 +34,24 @@
                   <Font name="Cambria" size="20.0" />
                </font>
             </Label>
-            <Spinner layoutX="194.0" layoutY="69.0" prefHeight="20.0" prefWidth="52.0" AnchorPane.bottomAnchor="190.0" />
+            <Spinner fx:id="troopSpinner"   layoutX="194.0" layoutY="69.0" prefHeight="20.0" prefWidth="52.0"  AnchorPane.bottomAnchor="190.0" />
             <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="20.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0">
                <image>
                   <Image url="@../images/cannon.png" />
                </image>
             </ImageView>
-            <Label layoutX="83.0" layoutY="65.0" prefHeight="45.0" prefWidth="42.0" text="xN" textFill="#bd1111" AnchorPane.leftAnchor="82.0" AnchorPane.topAnchor="65.0">
+            <Label fx:id="troopLabel" layoutX="83.0" layoutY="65.0" prefHeight="45.0" prefWidth="42.0" textFill="WHITE" AnchorPane.leftAnchor="82.0" AnchorPane.topAnchor="65.0">
                <font>
                   <Font size="28.0" />
                </font></Label>
-            <Spinner layoutX="194.0" layoutY="137.0" prefHeight="20.0" prefWidth="52.0" AnchorPane.bottomAnchor="120.0" />
-            <Spinner layoutX="193.0" layoutY="218.0" prefHeight="20.0" prefWidth="52.0" AnchorPane.bottomAnchor="50.0" />
-            <Label layoutX="83.0" layoutY="144.0" prefHeight="45.0" prefWidth="42.0" text="xN" textFill="#bd1111">
+            <Spinner fx:id="cavalrySpinner" layoutX="194.0" layoutY="137.0" prefHeight="20.0" prefWidth="52.0" AnchorPane.bottomAnchor="120.0" />
+            <Spinner fx:id="artillerySpinner" layoutX="193.0" layoutY="218.0" prefHeight="20.0" prefWidth="52.0" AnchorPane.bottomAnchor="50.0" />
+            <Label fx:id="cavalryLabel" layoutX="83.0" layoutY="144.0" prefHeight="45.0" prefWidth="42.0" textFill="WHITE">
                <font>
                   <Font size="28.0" />
                </font>
             </Label>
-            <Label layoutX="83.0" layoutY="214.0" prefHeight="45.0" prefWidth="42.0" text="xN" textFill="#bd1111">
+            <Label fx:id="artilleryLabel" layoutX="83.0" layoutY="214.0" prefHeight="45.0" prefWidth="42.0" textFill="WHITE">
                <font>
                   <Font size="28.0" />
                </font>
@@ -65,12 +61,17 @@
                   <Font name="Cambria" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="198.0" layoutY="260.0" text="Label">
+            <Label fx:id="totalLabel" layoutX="198.0" layoutY="260.0" text="Label">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
+      <Button fx:id="closeButton" layoutX="29.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#BackButton" prefHeight="16.0" prefWidth="80.0" style="-fx-background-color: #bd1111; -fx-background-radius: 5em;" text="BACK" AnchorPane.leftAnchor="27.0">
+         <font>
+            <Font name="Cambria" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

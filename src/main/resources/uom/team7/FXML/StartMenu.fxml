@@ -27,19 +27,19 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </HBox>
-      <Button fx:id="startGameB" alignment="CENTER" layoutX="281.0" layoutY="400.0" lineSpacing="20.0" mnemonicParsing="false" onMouseClicked="#startGameButton" prefHeight="65.0" prefWidth="238.0" style="-fx-background-radius: 5em; -fx-background-color: #0fea88;" text=" START GAME">
+      <Button fx:id="startGameB" alignment="CENTER" layoutX="281.0" layoutY="400.0" lineSpacing="20.0" mnemonicParsing="false" onMouseClicked="#startGameButton" prefHeight="65.0" prefWidth="238.0" style="-fx-background-radius: 5em; -fx-background-color: #17bd46;" text=" START GAME">
          <font>
-            <Font name="Cambria Bold Italic" size="30.0" />
+            <Font name="Cambria Bold" size="30.0" />
          </font>
       </Button>
       <Button alignment="CENTER" layoutX="579.0" layoutY="535.0" lineSpacing="20.0" mnemonicParsing="false" onMouseClicked="#HowToPLayButton" prefHeight="30.0" prefWidth="187.0" style="-fx-background-radius: 5em; -fx-background-color: #777d78;" text="HOW TO PLAY" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="34.0">
          <font>
-            <Font name="Cambria Bold Italic" size="22.0" />
+            <Font name="Cambria Bold" size="22.0" />
          </font>
       </Button>
       <Button alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="534.0" mnemonicParsing="false" onMouseClicked="#ExitButton" prefHeight="30.0" prefWidth="187.0" style="-fx-background-radius: 5em; -fx-background-color: #bd1111;" text="EXIT GAME" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="34.0">
          <font>
-            <Font name="Cambria Bold Italic" size="22.0" />
+            <Font name="Cambria Bold" size="22.0" />
          </font>
       </Button>
       <ImageView fitHeight="80.0" fitWidth="255.0" layoutX="273.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="273.0">
@@ -52,9 +52,9 @@
             <Font name="Cambria Bold Italic" size="26.0" />
          </font>
       </Label>
-      <Button contentDisplay="CENTER" layoutX="766.0" layoutY="8.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#lightMode" prefHeight="25.0" prefWidth="27.0" style="-fx-background-color: #28252e; -fx-background-radius: 10em;" textFill="#070707" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="773.0" AnchorPane.topAnchor="5.0">
+      <Button contentDisplay="CENTER" layoutX="766.0" layoutY="8.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" style="-fx-background-color: #28252e; -fx-background-radius: 10em;" textFill="#070707" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="773.0" AnchorPane.topAnchor="5.0">
          <graphic>
-            <ImageView fitHeight="45.0" fitWidth="35.0" onMouseClicked="#lightMode" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="45.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/settings.png" />
                </image>

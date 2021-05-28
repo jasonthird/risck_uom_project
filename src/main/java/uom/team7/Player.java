@@ -10,6 +10,8 @@ import java.util.List;
  */
 
 public class Player {
+    int id;
+    String color;
     Cards cards;
     int unsedTroops;
     boolean dead;
@@ -22,7 +24,13 @@ public class Player {
         dead = false;
         countriesOwned = new ArrayList<>();
     }
-
+    public void setColor(String color1){
+        color = color1;
+    }
+    public String getColor(){
+        return color;
+    }
+    public void setId(int i){ this.id = i +1;}
     //Check if the player has no owned countries left(dead)
     public boolean statusCheck(){
         if(countriesOwned.isEmpty()){
@@ -66,4 +74,5 @@ public class Player {
         return countriesOwned.contains(country);
 
     }
+
 }

@@ -4,7 +4,7 @@
 .RoundButton {
     -fx-background-radius: 5em;
     -fx-border-radius: 5em;
-    -fx-border-width: 2;
+    -fx-border-width: 4;
     -fx-min-width: 60px;
     -fx-min-height: 60px;
     -fx-max-width: 60px;
@@ -16,6 +16,24 @@
     -fx-font-size: 22;
 }
 .toggle-button:selected {
-    -fx-background-color:   #0fea88;
+    -fx-background-color:    #17bd46;
 }
 
+.AttackButtonOf{
+    -fx-background-color:  #bd1111 ;
+    -fx-text-fill:  black;
+    -fx-background-radius: 5em;
+
+}
+
+.CountryButton{
+    -fx-background-radius: 5em;
+    -fx-border-radius: 5em;
+    -fx-border-width: 4;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-max-width:  40px;
+    -fx-max-height: 40px;
+    -fx-border-color: #000000;
+    -fx-font-size: 15;
+}
