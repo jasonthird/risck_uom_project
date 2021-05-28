@@ -40,9 +40,8 @@ public class GameLogic {
 
            // placeTroops(players[0], boardController);
 
-                upkeep(players[0], boardController);
-
-            //attackPhase(players[0], boardController);
+            //upkeep(players[0], boardController);
+            attackPhase(players[0], boardController);
             //endTurn(players[0],boardController);
 
 

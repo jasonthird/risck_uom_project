@@ -108,10 +108,10 @@ public class BoardController  {
                 buttonId = button.getId().toString();
                 buttonText = button.getText();
                 country2 = world.findCountry(buttonId);
-                if (player.countriesOwned.contains(country) && !player.countriesOwned.contains(country2) ) {
-                    if(world.listOfConnectedCountries(country,player).contains(country2)) {
+                if (player.countriesOwned.contains(country) && !player.countriesOwned.contains(country2)  && country.adjacentCountries.contains(country2)) {
+
                         System.out.println("Player: " + player.id + " Attack: " + country2.toString() + " /From: " + country.toString());
-                    }
+
                 }
                 twoSelected = false;
 
