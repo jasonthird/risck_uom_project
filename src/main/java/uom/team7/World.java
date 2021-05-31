@@ -8,13 +8,6 @@ public class World{
     public Country[] countries;
     public int numOfTrades ;
 
-    public void setNumOfTrades(int numOfTrades) {
-        this.numOfTrades = numOfTrades;
-    }
-
-
-
-
 
     public World(int numPlayers) {
         numOfTrades = 6;
@@ -41,14 +34,7 @@ public class World{
     }
 
 
-    public Country findCountry(String country){
-        for (Country c : countries) {
-            if (country.equals(c.toString())) {
-                return c;
-            }
-        }
-        return null;
-    }
+
 
     //create the players and initialize the unsedTroops
     public  Player[] initializePlayers(int numPlayers) {
@@ -400,6 +386,15 @@ public class World{
         return attackResult(own,enemy);
     }
 
+    public Country findCountry(String country){
+        for (Country c : countries) {
+            if (country.equals(c.toString())) {
+                return c;
+            }
+        }
+        return null;
+    }
+
     //Constrains for attack
     public boolean attackCheck(Country attacker,Country defender,Player player){
         return  player.countriesOwned.contains(attacker)  &&
@@ -416,7 +411,8 @@ public class World{
             if(enemy.getOwner().isDead()){
                 own.getOwner().cards.winnerTakesCards(enemy.getOwner().cards);
             }
-            enemy.setNum(0);
+            enemy.setNum(1);
+            own.setNum(own.getNumTroops()-1);
             own.getOwner().countriesOwned.add(enemy);
             enemy.getOwner().countriesOwned.remove(enemy);
             enemy.setOwner(own.getOwner());
@@ -444,5 +440,9 @@ public class World{
     public int getNumOfTrades() { return numOfTrades; }
 
     public Player[] getPlayers() { return players; }
+
+    public void setNumOfTrades(int numOfTrades) {
+        this.numOfTrades = numOfTrades;
+    }
 
 }

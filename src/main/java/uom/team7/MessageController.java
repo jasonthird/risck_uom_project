@@ -15,15 +15,21 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MessageController implements Initializable {
-    private World world;
-    private Country country,country2;
     @FXML private Button troopLabel;
     @FXML private Slider slider;
     @FXML private Label countryLabel,countryLabel1,conquerLabel,fortifyLabel;
     private Player player;
     private BoardController board;
     private Scene scene;
+    private World world;
+    private Country country,country2;
 
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        slider.valueProperty().addListener((observableValue, number, t1) -> troopLabel.setText(String.valueOf((int)slider.getValue())));
+    }
 
     @FXML
     public void fortify() throws IOException {
@@ -32,10 +38,7 @@ public class MessageController implements Initializable {
         board.updateMap(world.getPlayers(), scene);
         Stage stage = (Stage) troopLabel.getScene().getWindow();
         stage.close();
-
     }
-
-
 
     //Initialize the values of scene's components
     public void init(Country country, Country country2, World world, Player player, BoardController boardController, Scene scene) {
@@ -61,16 +64,5 @@ public class MessageController implements Initializable {
         if(countryLabel != null) {
             countryLabel.setText(country2.toString());
         }
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        slider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                troopLabel.setText(String.valueOf((int)slider.getValue()));
-            }
-        });
     }
 }

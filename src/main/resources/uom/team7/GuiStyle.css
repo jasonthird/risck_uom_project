@@ -36,6 +36,7 @@
     -fx-max-height: 45px;
     -fx-border-color: #000000;
     -fx-font-size: 15;
+    -fx-background-insets: 0;
 }
 
 .OkButton{

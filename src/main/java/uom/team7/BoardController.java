@@ -18,7 +18,7 @@ public class BoardController  {
     private GameLogic game;
     private World world;
     private Player player;
-    public boolean twoSelected = false;
+    public boolean twoSelected = false,oneSelected = false;
     public String buttonId, buttonText;
 
     @FXML
@@ -49,7 +49,8 @@ public class BoardController  {
         //Sets the attackButton disable again
         attackButton.setStyle("-fx-background-color: #bd1111");
         attackButton.setDisable(true);
-
+        oneSelected = false;
+        twoSelected = false;
         System.out.println("Player:"+player.id+" Attack: "+country2.toString()+"/From: "+country.toString());
 
         if(world.attack(country,country2)) {
@@ -95,6 +96,7 @@ public class BoardController  {
     @FXML
     private void skipButton() throws IOException {
         game.setState(game.getState() + 1);
+        updateMap(world.getPlayers(), scene1);
     }
 
     @FXML
@@ -137,20 +139,41 @@ public class BoardController  {
         else if (tradeButton.isDisable()) {
             buttonId = button.getId().toString();
             buttonText = button.getText();
-            if (!twoSelected) {
+            if ( !oneSelected && !twoSelected ){
                 country = world.findCountry(buttonId);
-                System.out.println("Selected Country:" + country.toString());
-                twoSelected = true;
-            } else {
-                country2 = world.findCountry(buttonId);
-                System.out.println("Selected Country:" + country2.toString());
-                if (world.attackCheck(country,country2,player)) {
-                        attackButton.setStyle("-fx-background-color: #0fea88");
-                        attackButton.setDisable(false);
-                    twoSelected = false;
-                }else{
-                    twoSelected = false;
+                if(player.countriesOwned.contains(country)) {
+                    Button b1 = (Button) button.lookup("#" + country.toString());
+                    b1.setStyle("fx-border-color: #ffffff");
+                    System.out.println("Selected Country:" + country.toString());
+                    oneSelected = true;
                 }
+            }
+            else {
+                if( oneSelected && !twoSelected) {
+                    country2 = world.findCountry(buttonId);
+                    if(!player.countriesOwned.contains(country2)) {
+                        Button b2 = (Button) button.lookup("#" + country2.toString());
+                        b2.setStyle("fx-border-color: #ffffff");
+                        System.out.println("Selected Country2:" + country2.toString());
+                        if (world.attackCheck(country, country2, player)) {
+                            attackButton.setStyle("-fx-background-color: #0fea88");
+                            attackButton.setDisable(false);
+                        }
+                        twoSelected = true;
+                        oneSelected = false;
+                    }
+                }else{
+                    System.out.println("Reset");
+                    updateMap(world.getPlayers(), scene1);
+                    attackButton.setStyle("-fx-background-color: #bd1111");
+                    attackButton.setDisable(true);
+                    twoSelected =false;
+                    oneSelected = false;
+                }
+
+
+
+
 
             }
         }
@@ -159,32 +182,50 @@ public class BoardController  {
         else if (attackButton.isDisable()) {
             buttonId = button.getId().toString();
             buttonText = button.getText();
-            if (!twoSelected) {
+            if (!oneSelected && !twoSelected) {
                 country = world.findCountry(buttonId);
-                System.out.println("Selected Country:" + country.toString());
-                twoSelected = true;
-            } else {
-                country2 = world.findCountry(buttonId);
-                System.out.println("Selected Country:" + country2.toString());
-                if(     world.moveArmyCheck(country,country2,player) ) {
-                    Parent root;
-                    try {
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Fortify.fxml"));
-                        root = fxmlLoader.load();
-                        MessageController messageController = fxmlLoader.getController();
-                        messageController.init(country,country2,world,player,this,scene1);
-                        Stage stage = new Stage();
-                        stage.setTitle("RISK");
-                        stage.setScene(new Scene(root, 250, 170));
-                        stage.setResizable(false);
-                        //stage.initStyle(StageStyle.UNDECORATED);
-                        stage.centerOnScreen();
-                        stage.show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                if(player.countriesOwned.contains(country)) {
+                    Button b1 = (Button) button.lookup("#" + country.toString());
+                    b1.setStyle("fx-border-color: #ffffff");
+                    System.out.println("Selected Country:" + country.toString());
+                    oneSelected = true;
                 }
-                twoSelected = false;
+            } else {
+                if( oneSelected && !twoSelected) {
+                    country2 = world.findCountry(buttonId);
+                    if (player.countriesOwned.contains(country2)) {
+                        Button b2 = (Button) button.lookup("#" + country2.toString());
+                        b2.setStyle("fx-border-color: #ffffff");
+                        System.out.println("Selected Country:" + country2.toString());
+                        if (world.moveArmyCheck(country, country2, player)) {
+                            Parent root;
+                            try {
+                                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Fortify.fxml"));
+                                root = fxmlLoader.load();
+                                MessageController messageController = fxmlLoader.getController();
+                                messageController.init(country, country2, world, player, this, scene1);
+                                Stage stage = new Stage();
+                                stage.setTitle("RISK");
+                                stage.setScene(new Scene(root, 250, 170));
+                                stage.setResizable(false);
+                                //stage.initStyle(StageStyle.UNDECORATED);
+                                stage.centerOnScreen();
+                                stage.show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        twoSelected = true;
+                        oneSelected = false;
+                    }
+                }else{
+                    System.out.println("Reset");
+                    updateMap(world.getPlayers(), scene1);
+                    attackButton.setStyle("-fx-background-color: #bd1111");
+                    attackButton.setDisable(true);
+                    twoSelected =false;
+                    oneSelected = false;
+                }
             }
         }
     }
