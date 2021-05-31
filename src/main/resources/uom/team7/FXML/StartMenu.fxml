@@ -52,14 +52,5 @@
             <Font name="Cambria Bold Italic" size="26.0" />
          </font>
       </Label>
-      <Button contentDisplay="CENTER" layoutX="766.0" layoutY="8.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" style="-fx-background-color: #28252e; -fx-background-radius: 10em;" textFill="#070707" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="773.0" AnchorPane.topAnchor="5.0">
-         <graphic>
-            <ImageView fitHeight="45.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/settings.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
    </children>
 </AnchorPane>

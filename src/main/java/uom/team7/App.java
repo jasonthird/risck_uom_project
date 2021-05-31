@@ -4,14 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
-import java.io.File;
-
-import javax.print.attribute.standard.Media;
-import java.io.File;
 import java.io.IOException;
 
 public class App extends Application {
@@ -23,9 +16,8 @@ public class App extends Application {
         primaryStage = stage;
         StartMenu = new Scene(loadFXML(), 800, 600);
 
-        primaryStage.getIcons().add(new Image(("file:uom/team7/images/skip.png")));
         primaryStage.setTitle("Risck");
-
+                                               //icon set
         primaryStage.setScene(StartMenu);
         primaryStage.setResizable(false);
         primaryStage.centerOnScreen();
@@ -46,7 +38,7 @@ public class App extends Application {
     }
 
     public static void startGame(int numPlayers) throws IOException {
-        new GameLogic(numPlayers, primaryStage);
+       new GameLogic(numPlayers, primaryStage);
     }
 
 

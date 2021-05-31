@@ -40,36 +40,48 @@ public class Cards {
     }
 
     //Remove the selected amount of cards from players hand to redeem them
-    public int redeemCards(Cards givenCards, int numOfTrades){
-        int[] rCards = givenCards.getCards();
-
-        //trade 3 cards of the same type,check if the player has that amount of cards
-        for (int i = 0; i < 3; i++) {
-            if ( (rCards[i] == 3) && (numberCards[i] >= 3) ){
-                    numberCards[i] -= rCards[i];
-                    return  numOfTrades += 2;
-            }
-        }
-
+    public int redeemCards(int t, int c, int a, World world){
+        int[] rCards = new int[3];
+        rCards[0] = t;
+        rCards[1] = c;
+        rCards[2] = a;
+        int total = 0;
         //trade cards one of each type,check if the player has that amount of cards
         if( (rCards[0] == rCards[1] ) && (rCards[0] == rCards[2]) && (rCards[0] > 0) ){
             if( (numberCards[0] >= rCards[0]) && (numberCards[1] >= rCards[0]) && (numberCards[2] >= rCards[0]) ){
-                 numberCards[0] -= rCards[0];
-                 numberCards[1] -= rCards[1];
-                 numberCards[2] -= rCards[2];
-                 return  numOfTrades += 2 * rCards[0];
+                System.out.println("You Trade same:" + rCards[0] * 3 + " cards.");
+                numberCards[0] -= rCards[0];
+                numberCards[1] -= rCards[1];
+                numberCards[2] -= rCards[2];
+                for(int i=0; i < rCards[0]; i++) {
+                    total += world.getNumOfTrades();
+                    world.setNumOfTrades(world.numOfTrades + 2);
+                }
+
+                return  total ;
             }
         }
-        //invalid trade
-        else{ return 0; }
 
-        return  numOfTrades;
+        //trade 3 cards of the same type,check if the player has that amount of cards
+        for (int i = 0; i < 3; i++) {
+            if ( (rCards[i] != 0) && (rCards[i] % 3) == 0 && (numberCards[i] >= 3)  ){
+                    numberCards[i] -= rCards[i];
+                    total += (world.getNumOfTrades() * (rCards[i] / 3) );
+                    System.out.println("You Trade:" + rCards[i]  + " cards.");
+                    world.setNumOfTrades(world.numOfTrades += 2 * (rCards[i] / 3));
+            }
+            if( i == 2 ){ return total; }
+        }
+        if((rCards[0] == rCards[1] ) && (rCards[0] == rCards[2]) && (rCards[0] ==0) ){
+            return 0;
+        }
+        return  total;
     }
 
     public int[] getCards() {
         return numberCards;
     }
 
-    public void addCards(int i,int num){ numberCards[i] += num; }
+    public void addCards(int type,int num){ numberCards[type] += num; }
 
 }

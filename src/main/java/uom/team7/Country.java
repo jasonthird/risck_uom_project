@@ -1,7 +1,5 @@
 package uom.team7;
 
-
-import java.util.LinkedList;
 import java.util.TreeSet;
 
 public class Country implements Comparable<Country>{
@@ -10,7 +8,6 @@ public class Country implements Comparable<Country>{
     int numTroops;
     private Player owner;
     TreeSet<Country> adjacentCountries;
-
 
 
     public Country (String name) {
@@ -27,8 +24,8 @@ public class Country implements Comparable<Country>{
     }
 
     //Remove numTroops from the currently country after 1.fortify or 2.attack result
-    public void removeNumTroops(int numTroops){
-        numTroops -= numTroops;
+    public void removeNumTroops(int numTroops1){
+        numTroops -= numTroops1;
     }
 
     /*Setters & Getters*/
@@ -51,6 +48,8 @@ public class Country implements Comparable<Country>{
     public Player getOwner(){
         return owner;
     }
+
+    public void setNum(int num){ numTroops = num; }
 
     public String toString(){
         return  this.name ;

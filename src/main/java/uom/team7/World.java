@@ -6,12 +6,18 @@ public class World{
 
     public Player[] players;
     public Country[] countries;
-    public int numOfTrades;
+    public int numOfTrades ;
+
+    public void setNumOfTrades(int numOfTrades) {
+        this.numOfTrades = numOfTrades;
+    }
+
+
 
 
 
     public World(int numPlayers) {
-        int numOfTrades = 4;
+        numOfTrades = 6;
         players = initializePlayers(numPlayers);
         countries = initializeCountries();
         initializeCountryOwners(countries, players, numPlayers);
@@ -20,7 +26,7 @@ public class World{
     public void connectedCountries(Country country,Player player, ArrayList<Country> connectedCountryList) {
         for (Country c : country.getAdjacentCountries()) {
             System.out.println(c.toString());
-            if (connectedCountryList.contains(c) == false && c.getOwner() == player) {
+            if (!connectedCountryList.contains(c) && c.getOwner() == player) {
                 connectedCountryList.add(c);
                 connectedCountries(c,player,connectedCountryList);
             }
@@ -44,30 +50,13 @@ public class World{
         return null;
     }
 
-    public boolean attackCheck(Country attacker,Country defender,Player player){
-        return player.countriesOwned.contains(attacker) && !player.countriesOwned.contains(defender);
-    }
-    public boolean fortifyCheck(Country country,Country country2,Player player){
-        return player.countriesOwned.contains(country) && player.countriesOwned.contains(country2);
-    }
-    //fortify one country only
-    public void fortify(Country country, int numOfTroops){
-        country.setNumTroops(numOfTroops);
-    }
-
-    //move a number of troops from a countryA to countryB
-    public void moveArmy(Country country1,Country country2,int numOfTroops){
-        country1.setNumTroops(numOfTroops);
-        country2.removeNumTroops(numOfTroops);
-    }
-
     //create the players and initialize the unsedTroops
     public  Player[] initializePlayers(int numPlayers) {
         int unsedTroops;
         Player[] players = new Player[numPlayers];
         switch (numPlayers) {
             case 2:
-                unsedTroops = 50;
+                unsedTroops = 2;
                 break;
             case 3:
                 unsedTroops = 35;
@@ -87,6 +76,8 @@ public class World{
         for (int i = 0; i < numPlayers; i++) {
             players[i] = new Player();
             players[i].setId(i);
+
+
             players[i].setUnsedTroops(unsedTroops);
             switch (i){
                 case 0:
@@ -102,10 +93,10 @@ public class World{
                     playerColor = "#10c913";
                     break;
                 case 4:
-                    playerColor = "#10c9b6";
+                    playerColor = "#c97310";
                     break;
                 case 5:
-                    playerColor = "#c91082";
+                    playerColor = "#5d10c9";
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + i);
@@ -162,12 +153,12 @@ public class World{
         countries[41] = new Country("NewGuinea");
 
 
-        countries[0].adjacentCountries = new TreeSet<Country>();
+        countries[0].adjacentCountries = new TreeSet<>();
         countries[0].adjacentCountries.add(countries[1]);
         countries[0].adjacentCountries.add(countries[5]);
         countries[0].adjacentCountries.add(countries[36]);
 
-        countries[1].adjacentCountries = new TreeSet<Country>();
+        countries[1].adjacentCountries = new TreeSet<>();
         countries[1].adjacentCountries.add(countries[5]);
         countries[1].adjacentCountries.add(countries[6]);
         countries[1].adjacentCountries.add(countries[8]);
@@ -332,6 +323,7 @@ public class World{
             for (Country c : country.adjacentCountries) {
                 c.adjacentCountries.add(country);
             }
+
         }
 
         return  countries;
@@ -348,63 +340,100 @@ public class World{
         }
     }
 
-    //Implementation of attack
-    public void attack(Country own,Country enemy){
-        int[] attacker = new int[3];
-        int[] defender = new int[2];
+    //calculate the number of troops the player receives at the begging of the turn
+    public  void updateUnsedTroops(Player player) {
+        int numTroops = (player.countriesOwned.size() / 3); // + continent_bonus?
+        player.setUnsedTroops(Math.max(3, numTroops));
+    }
 
-        for(int i = 0; i < Math.min(attacker.length, own.numTroops - 1); i++){
-            attacker[i] = roll();
-        }
-        for(int i = 0; i < Math.min(defender.length, enemy.numTroops - 1); i++){
-            defender[i] = roll();
-        }
+    //fortify one country only
+    public void fortify(Country country, int numOfTroops){
+        country.setNumTroops(numOfTroops);
+        country.getOwner().removeTroops(numOfTroops);
+    }
 
-        Arrays.sort(attacker);
-        Arrays.sort(defender);
-
-        for(int i = 0; i < 2; i++) {
-            if (attacker[i] == defender[i]) {
-                own.removeNumTroops(1);
-            } else if (attacker[i] > defender[i]) {
-                enemy.removeNumTroops(1);
-            } else {
-                own.removeNumTroops(1);
-            }
-            attackResult(own,enemy);
+    //move a number of troops from a country to country2
+    public void moveArmy(Country country,Country country2,int numOfTroops,Player player){
+        if(moveArmyCheck(country,country2,player)){
+            country2.setNumTroops(numOfTroops);
+            country.removeNumTroops(numOfTroops);
         }
     }
 
+    //Constrains for moveArmy
+    public boolean moveArmyCheck(Country country,Country country2,Player player){
+        return  player.countriesOwned.contains(country)  &&
+                player.countriesOwned.contains(country2) &&
+                country != country2  &&  country.getNumTroops()  > 1;
+    }
+
+    //Implementation of attack
+    public boolean attack(Country own,Country enemy){
+        Integer[] attacker = new Integer[3];
+        Integer[] defender = new Integer[2];
+
+        for(int i = 0; i < 3; i++){
+            attacker[i] = roll();
+        }
+        for(int i = 0; i < 2; i++){
+            defender[i] = roll();
+        }
+
+        Arrays.sort(attacker, Collections.reverseOrder());
+
+        Arrays.sort(defender,Collections.reverseOrder());
+
+
+        for(int i = 0; i < 2; i++) {
+            if (attacker[i] == defender[i]) {
+                System.out.println("Equals:attacker loose");
+                own.removeNumTroops(1);
+            } else if (attacker[i] > defender[i]) {
+                System.out.println("Attacker win");
+                enemy.removeNumTroops(1);
+            } else {
+                System.out.println("Attacker loose");
+                own.removeNumTroops(1);
+            }
+
+        }
+        return attackResult(own,enemy);
+    }
+
+    //Constrains for attack
+    public boolean attackCheck(Country attacker,Country defender,Player player){
+        return  player.countriesOwned.contains(attacker)  &&
+                !player.countriesOwned.contains(defender) &&
+                attacker.getNumTroops() >= 3;
+    }
+
     //Calculate the attack result
-    public void attackResult(Country own,Country enemy){
-        if(enemy.numTroops == 0) {
+    public boolean attackResult(Country own, Country enemy){
+        if(enemy.numTroops <= 0) {
             if(!own.getOwner().isWonCard()){
                 own.getOwner().setWonCard(true);
             }
-            own.getOwner().addCountry(enemy);
-            enemy.getOwner().removeCountry(enemy);
+            if(enemy.getOwner().isDead()){
+                own.getOwner().cards.winnerTakesCards(enemy.getOwner().cards);
+            }
+            enemy.setNum(0);
+            own.getOwner().countriesOwned.add(enemy);
+            enemy.getOwner().countriesOwned.remove(enemy);
+            enemy.setOwner(own.getOwner());
+            return true;
         }
+        return false;
     }
 
     //check win condition
     public boolean checkWin(Player [] players) {
         int countDead = 0;
         for (Player p : players) {
-            if (p.statusCheck()) {
+            if (p.isDead()) {
                 countDead++;
             }
         }
-        if (players.length-1 == countDead) {
-            return true;
-        }
-        return false;
-    }
-
-    //calculate the number of troops the player receives at the begging of the turn
-    public  void updateUnsedTroops(Player player) {
-        int numTroops = (player.countriesOwned.size() / 3); // + continent_bonus?
-        player.setUnsedTroops(Math.max(3, numTroops));
-
+        return players.length - 1 == countDead;
     }
 
     //Simulates the die roll.Returns a number 1-6.
@@ -414,8 +443,6 @@ public class World{
 
     public int getNumOfTrades() { return numOfTrades; }
 
-    public Player[] getPlayers() {
-        return players;
-    }
+    public Player[] getPlayers() { return players; }
 
 }

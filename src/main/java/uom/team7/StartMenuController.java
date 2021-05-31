@@ -23,8 +23,9 @@ public class StartMenuController {
     private void startGameButton() throws IOException {
 
         ToggleButton selectedButton = (ToggleButton) NumPlayers.getSelectedToggle();
-        App.startGame(Integer.parseInt(selectedButton.getText()));
-
+        if(selectedButton != null) {
+            App.startGame(Integer.parseInt(selectedButton.getText()));
+        }
 
     }
 
