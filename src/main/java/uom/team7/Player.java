@@ -12,6 +12,11 @@ public class Player {
     String color;
     Cards cards;
     int unsedTroops;
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+
     boolean dead;
     boolean wonCard;
     List<Country> countriesOwned;

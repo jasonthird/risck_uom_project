@@ -49,13 +49,20 @@ public class GameLogic {
                     while (true) {
                         try {
                             currentPlayer = players[i];
-                            if( currentPlayer.isDead()){
-                                state = 1;
+                            if( currentPlayer.statusCheck()){
+
+                                System.out.println("Player " + currentPlayer.id + "is dead");
                                 if(currentPlayer == players[numPlayers - 1]){
                                     i = 0;
-                                }else{
-                                    i ++;
+                                    System.out.println("i=0");
+                                }else {
+                                    i++;
+
+                                    System.out.println("i++");
                                 }
+                                currentPlayer = players[i];
+                                System.out.println("Current Player " + currentPlayer.id );
+                                state = 1;
                             }
                             if (state == 0) {
                                 if (currentPlayer == players[numPlayers - 1] && currentPlayer.getUnsedTroops() == 0) {

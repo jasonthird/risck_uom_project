@@ -49,10 +49,11 @@ public class BoardController  {
         //Sets the attackButton disable again
         attackButton.setStyle("-fx-background-color: #bd1111");
         attackButton.setDisable(true);
+        //Reset selected flags
         oneSelected = false;
         twoSelected = false;
         System.out.println("Player:"+player.id+" Attack: "+country2.toString()+"/From: "+country.toString());
-
+        //Initialize attack
         if(world.attack(country,country2)) {
             Parent root;
             try {
@@ -73,6 +74,7 @@ public class BoardController  {
                 e.printStackTrace();
             }
         }
+        //Check if the current player is the winner
         if(world.checkWin(world.getPlayers())){
             Parent root;
             try {
@@ -139,6 +141,7 @@ public class BoardController  {
         else if (tradeButton.isDisable()) {
             buttonId = button.getId().toString();
             buttonText = button.getText();
+            //If the first country is selected do stuff
             if ( !oneSelected && !twoSelected ){
                 country = world.findCountry(buttonId);
                 if(player.countriesOwned.contains(country)) {
@@ -149,6 +152,7 @@ public class BoardController  {
                 }
             }
             else {
+                //If the second country is selected do stuff
                 if( oneSelected && !twoSelected) {
                     country2 = world.findCountry(buttonId);
                     if(!player.countriesOwned.contains(country2)) {
@@ -162,6 +166,7 @@ public class BoardController  {
                         twoSelected = true;
                         oneSelected = false;
                     }
+                //Reset selected countries if the user select a third country
                 }else{
                     System.out.println("Reset");
                     updateMap(world.getPlayers(), scene1);

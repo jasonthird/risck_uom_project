@@ -42,7 +42,7 @@ public class World{
         Player[] players = new Player[numPlayers];
         switch (numPlayers) {
             case 2:
-                unsedTroops = 2;
+                unsedTroops = 50;
                 break;
             case 3:
                 unsedTroops = 35;
@@ -54,7 +54,7 @@ public class World{
                 unsedTroops = 25;
                 break;
             case 6:
-                unsedTroops = 20;
+                unsedTroops = 5;
                 break;
             default : throw new IllegalStateException("Unexpected value: " + numPlayers);
         }
@@ -89,6 +89,7 @@ public class World{
             }
             players[i].setColor(playerColor);
         }
+
         return players;
     }
 
@@ -371,7 +372,7 @@ public class World{
 
 
         for(int i = 0; i < 2; i++) {
-            if (attacker[i] == defender[i]) {
+            if (attacker[i].equals(defender[i])) {
                 System.out.println("Equals:attacker loose");
                 own.removeNumTroops(1);
             } else if (attacker[i] > defender[i]) {
