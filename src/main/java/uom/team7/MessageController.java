@@ -31,6 +31,8 @@ public class MessageController implements Initializable {
 
     @FXML
     public void fortify() throws IOException {
+        board.oneSelected = false;
+        board.twoSelected = false;
         world.moveArmy(country,country2,(int)slider.getValue(),player);
         System.out.println(country.getNumTroops() + "  " + country2.getNumTroops());
         board.updateMap(world.getPlayers(), scene);

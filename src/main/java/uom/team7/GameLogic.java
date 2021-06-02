@@ -36,106 +36,95 @@ public class GameLogic {
 
             boardController = fxmlLoader.getController();
             boardController.updateMap(players, scene);
+
             stage.setScene(scene);
             stage.alwaysOnTopProperty();
             stage.centerOnScreen();
             stage.show();
-           new Thread() {
-                /* This Thread calculate's the current state of the current player.
-                    The input state change whenever the world updates on Users action.
-                    The loop ends when the win condition is achieved.In every 100 ms the Platform updates the
-                    Board. */
-                public void run() {
-                    while (true) {
-                        try {
+           /* This Thread calculate's the current state of the current player.
+               The input state change whenever the world updates on Users action.
+               The loop ends when the win condition is achieved.In every 100 ms the Platform updates the
+               Board. */
+            new Thread(() -> {
+                while (true) {
+                    try {
+                        currentPlayer = players[i];
+                        if( currentPlayer.statusCheck()){
+                            if(currentPlayer == players[numPlayers - 1]){
+                                i = 0;
+                            }else {
+                                i++;
+                            }
                             currentPlayer = players[i];
-                            if( currentPlayer.statusCheck()){
-
-                                System.out.println("Player " + currentPlayer.id + "is dead");
-                                if(currentPlayer == players[numPlayers - 1]){
-                                    i = 0;
-                                    System.out.println("i=0");
-                                }else {
-                                    i++;
-
-                                    System.out.println("i++");
-                                }
+                            state = 1;
+                        }
+                        if (state == 0) {
+                            if (currentPlayer == players[numPlayers - 1] && currentPlayer.getUnsedTroops() == 0) {
+                                i = 0;
+                                state = 1;
                                 currentPlayer = players[i];
-                                System.out.println("Current Player " + currentPlayer.id );
-                                state = 1;
+                            } else if (currentPlayer.getUnsedTroops() == 0 && currentPlayer != players[numPlayers - 1]) {
+                                i++;
                             }
-                            if (state == 0) {
-                                if (currentPlayer == players[numPlayers - 1] && currentPlayer.getUnsedTroops() == 0) {
-                                    i = 0;
-                                    state = 1;
-                                    currentPlayer = players[i];
-                                    System.out.println("i=0");
-                                } else if (currentPlayer.getUnsedTroops() == 0 && currentPlayer != players[numPlayers - 1]) {
-                                    i++;
-                                    System.out.println("i++");
-                                }
-                            }
-                            if (state == 1) {
-                                currentPlayer.setWonCard(false);
-                                world.updateUnsedTroops(currentPlayer);
-                                if(currentPlayer.cards.fullHandCheck()){
-                                    System.out.println("Full Hand");
-                                    state = 6;
-                                    flag = true;
-                                }else {
-                                    state = 2;
-                                }
-                            }
-                            if (state == 2) {
-                                if (currentPlayer.getUnsedTroops() == 0) {
-                                    state = 3;
-                                }
-                            }
-                            if (state == 5) {
-                                currentPlayer.cards.winCard(currentPlayer.isWonCard());
-                                state = 1;
-                                if (currentPlayer == players[numPlayers - 1]) {
-                                    i = 0;
-                                } else {
-                                    i++;
-                                }
-                            }
-                            if(state == 6  && !flag){
+                        }
+                        if (state == 1) {
+                            currentPlayer.setWonCard(false);
+                            world.updateUnsedTroops(currentPlayer);
+                            if(currentPlayer.cards.fullHandCheck()){
+                                System.out.println("Full Hand");
+                                state = 6;
+                                flag = true;
+                            }else {
                                 state = 2;
                             }
-                            // imitating work
-                            Thread.sleep(500);
-                        } catch (InterruptedException ex) {
-                            ex.printStackTrace();
                         }
-
-                        // update Board Map on FX thread
-                        Platform.runLater(() -> {
-
-                            if (state == 0) {
-                                placeTroops(currentPlayer, boardController);
+                        if (state == 2) {
+                            if (currentPlayer.getUnsedTroops() == 0) {
+                                state = 3;
                             }
-                            if( state == 6 && flag){
-                                fullHand(currentPlayer,boardController, true);
+                        }
+                        if (state == 5) {
+                            currentPlayer.cards.winCard(currentPlayer.isWonCard()); /// <----
+                            state = 1;
+                            if (currentPlayer == players[numPlayers - 1]) {
+                                i = 0;
+                            } else {
+                                i++;
                             }
-                            if (state == 1 || state == 2) {
-                                upkeep(currentPlayer, boardController);
-                            }
-                            if (state == 3) {
-                                attackPhase(currentPlayer, boardController);
-                            }
-                            if (state == 4) {
-                                endTurn(currentPlayer, boardController);
-                            }
-                            boardController.init(GameLogic.this, i, scene);
-                        });
+                        }
+                        if(state == 6  && !flag){
+                            state = 2;
+                        }
+                        // imitating work
+                        Thread.sleep(100);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
                     }
+
+                    // update Board Map on FX thread
+                    Platform.runLater(() -> {
+
+                        if (state == 0) {
+                            placeTroops(boardController);
+                        }
+                        if( state == 6 && flag){
+                            fullHand(currentPlayer,boardController, true);
+                        }
+                        if (state == 1 || state == 2) {
+                            upkeep(boardController);
+                        }
+                        if (state == 3) {
+                            attackPhase(boardController);
+                        }
+                        if (state == 4) {
+                            endTurn(boardController);
+                        }
+                        boardController.init(GameLogic.this, i, scene);
+                    });
                 }
-            }.start();
+            }).start();
             stage.centerOnScreen();
             stage.show();
-            //boardController.init(GameLogic.this, i, scene);
-          // attackPhase(players[0],boardController);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -153,7 +142,7 @@ public class GameLogic {
 
 
 
-    public void placeTroops(Player player, BoardController boardController) {
+    public void placeTroops(BoardController boardController) {
         boardController.upkeepLabel.setStyle("-fx-text-fill: #777d78");
         boardController.attackButton.setDisable(true);
         boardController.skipButton.setDisable(true);
@@ -185,7 +174,7 @@ public class GameLogic {
         }
         this.flag = false;
     }
-    public void upkeep(Player player, BoardController boardController) {
+    public void upkeep(BoardController boardController) {
         //Turn on the UPKEEP indicator
         boardController.upkeepLabel.setStyle("-fx-text-fill: #0fea88");
         //Turn off the FORTIFY indicator
@@ -195,7 +184,7 @@ public class GameLogic {
         boardController.tradeButton.setDisable(true);
     }
 
-    public void attackPhase(Player player,BoardController boardController) {
+    public void attackPhase(BoardController boardController) {
         //Turn off the UPKEEP indicator
         boardController.upkeepLabel.setStyle("-fx-text-fill: #777d78");
         //Turn off the FORTIFY indicator
@@ -204,7 +193,7 @@ public class GameLogic {
         boardController.tradeButton.setDisable(true);
     }
 
-    public void endTurn(Player player,BoardController boardController) {
+    public void endTurn(BoardController boardController) {
         //Turn off the UPKEEP indicator
         boardController.upkeepLabel.setStyle("-fx-text-fill: #777d78");
         //Turn on the FORTIFY indicator
@@ -226,7 +215,5 @@ public class GameLogic {
     public  void setState(int state) {
         this.state = state;
     }
-
-    public BoardController getController() { return boardController; }
 
 }

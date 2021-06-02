@@ -18,6 +18,15 @@ public class BoardController  {
     private GameLogic game;
     private World world;
     private Player player;
+
+    public void setTwoSelected(boolean twoSelected) {
+        this.twoSelected = twoSelected;
+    }
+
+    public void setOneSelected(boolean oneSelected) {
+        this.oneSelected = oneSelected;
+    }
+
     public boolean twoSelected = false,oneSelected = false;
     public String buttonId, buttonText;
 
@@ -98,6 +107,8 @@ public class BoardController  {
     @FXML
     private void skipButton() throws IOException {
         game.setState(game.getState() + 1);
+        twoSelected = false;
+        oneSelected = false;
         updateMap(world.getPlayers(), scene1);
     }
 
@@ -155,7 +166,7 @@ public class BoardController  {
                 //If the second country is selected do stuff
                 if( oneSelected && !twoSelected) {
                     country2 = world.findCountry(buttonId);
-                    if(!player.countriesOwned.contains(country2)) {
+                    if(!player.countriesOwned.contains(country2) && country.getAdjacentCountries().contains(country2)) {
                         Button b2 = (Button) button.lookup("#" + country2.toString());
                         b2.setStyle("fx-border-color: #ffffff");
                         System.out.println("Selected Country2:" + country2.toString());
@@ -189,7 +200,7 @@ public class BoardController  {
             buttonText = button.getText();
             if (!oneSelected && !twoSelected) {
                 country = world.findCountry(buttonId);
-                if(player.countriesOwned.contains(country)) {
+                if(player.countriesOwned.contains(country) & country.getNumTroops() > 1) {
                     Button b1 = (Button) button.lookup("#" + country.toString());
                     b1.setStyle("fx-border-color: #ffffff");
                     System.out.println("Selected Country:" + country.toString());
@@ -198,7 +209,7 @@ public class BoardController  {
             } else {
                 if( oneSelected && !twoSelected) {
                     country2 = world.findCountry(buttonId);
-                    if (player.countriesOwned.contains(country2)) {
+                    if (player.countriesOwned.contains(country2) && world.findPath(country,country2)) {
                         Button b2 = (Button) button.lookup("#" + country2.toString());
                         b2.setStyle("fx-border-color: #ffffff");
                         System.out.println("Selected Country:" + country2.toString());

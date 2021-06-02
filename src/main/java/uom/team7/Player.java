@@ -12,11 +12,6 @@ public class Player {
     String color;
     Cards cards;
     int unsedTroops;
-
-    public void setDead(boolean dead) {
-        this.dead = dead;
-    }
-
     boolean dead;
     boolean wonCard;
     List<Country> countriesOwned;
@@ -46,16 +41,6 @@ public class Player {
         if(unsedTroops > 0){ unsedTroops -= numTroops; }
     }
 
-    public void addCountry(Country country){
-        countriesOwned.add(country);
-    }
-
-    public void removeCountry(Country country){
-        countriesOwned.remove(country);
-    }
-
-
-
                          /*Setters & Getters*/
 
     public int getUnsedTroops() { return unsedTroops; }
@@ -63,8 +48,6 @@ public class Player {
     public void setUnsedTroops(int unsedTroops) {
         this.unsedTroops += unsedTroops;
     }
-
-    public boolean isOwned(Country country) { return countriesOwned.contains(country); }
 
     public boolean isWonCard() {
         return wonCard;

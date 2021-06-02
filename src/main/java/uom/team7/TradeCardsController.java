@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class TradeCardsController {
-    private int numOfTrades;
     private Player player;
     @FXML
     public Button closeButton;
@@ -31,7 +30,7 @@ public class TradeCardsController {
 
     @FXML
     public void TradeButton() throws IOException {
-        numOfTrades = player.cards.redeemCards(troopSpinner.getValue(), cavalrySpinner.getValue(), artillerySpinner.getValue(), world);
+        int numOfTrades = player.cards.redeemCards(troopSpinner.getValue(), cavalrySpinner.getValue(), artillerySpinner.getValue(), world);
 
         if(numOfTrades != 0) {
             System.out.println("Trades:" + numOfTrades);
@@ -90,13 +89,11 @@ public class TradeCardsController {
         }
         //Second condition : check for any value that is multiply of 3
         if(!flag) {
-            int temp = world.numOfTrades;
             for (int i = 0; i < 3; i++) {
                 if ( (value[i] != 0) && (value[i] % 3) == 0 && (value[i] >= 3) ) {
                     total += (n * (value[i] / 3) );
                     n += (2 * (value[i] / 3)) ;
                 }
-
                 if ( total >= world.numOfTrades ) {
                     totalLabel.setText(String.valueOf(total));
                 } else { totalLabel.setText(""); }

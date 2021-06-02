@@ -10,28 +10,16 @@ public class World{
 
 
     public World(int numPlayers) {
+
         numOfTrades = 6;
         players = initializePlayers(numPlayers);
         countries = initializeCountries();
+        for(Country c: countries){System.out.println(c.getAdjacentCountries());}
         initializeCountryOwners(countries, players, numPlayers);
 
     }
-    public void connectedCountries(Country country,Player player, ArrayList<Country> connectedCountryList) {
-        for (Country c : country.getAdjacentCountries()) {
-            System.out.println(c.toString());
-            if (!connectedCountryList.contains(c) && c.getOwner() == player) {
-                connectedCountryList.add(c);
-                connectedCountries(c,player,connectedCountryList);
-            }
-        }
-    }
 
 
-    public ArrayList<Country> listOfConnectedCountries(Country country,Player player) {
-        ArrayList<Country> listConnectedCountries = new ArrayList<>();
-        connectedCountries(country,player, listConnectedCountries);
-        return listConnectedCountries;
-    }
 
 
 
@@ -42,7 +30,7 @@ public class World{
         Player[] players = new Player[numPlayers];
         switch (numPlayers) {
             case 2:
-                unsedTroops = 50;
+                unsedTroops = 5;
                 break;
             case 3:
                 unsedTroops = 35;
@@ -54,7 +42,7 @@ public class World{
                 unsedTroops = 25;
                 break;
             case 6:
-                unsedTroops = 5;
+                unsedTroops = 20;
                 break;
             default : throw new IllegalStateException("Unexpected value: " + numPlayers);
         }
@@ -139,181 +127,308 @@ public class World{
         countries[40] = new Country("EastAustralia");
         countries[41] = new Country("NewGuinea");
 
-
-        countries[0].adjacentCountries = new TreeSet<>();
+        //Alaska
+        countries[0].adjacentCountries = new LinkedList<>();
         countries[0].adjacentCountries.add(countries[1]);
         countries[0].adjacentCountries.add(countries[5]);
         countries[0].adjacentCountries.add(countries[36]);
-
-        countries[1].adjacentCountries = new TreeSet<>();
+        //Alberta
+        countries[1].adjacentCountries = new LinkedList<>();
+        countries[1].adjacentCountries.add(countries[0]);
         countries[1].adjacentCountries.add(countries[5]);
         countries[1].adjacentCountries.add(countries[6]);
         countries[1].adjacentCountries.add(countries[8]);
 
-        countries[2].adjacentCountries = new TreeSet<Country>();
+        //CentralAmerica
+        countries[2].adjacentCountries = new LinkedList<>();
         countries[2].adjacentCountries.add(countries[3]);
         countries[2].adjacentCountries.add(countries[8]);
         countries[2].adjacentCountries.add(countries[9]);
 
-        countries[3].adjacentCountries = new TreeSet<Country>();
+        //EastUS
+        countries[3].adjacentCountries = new LinkedList<>();
+        countries[3].adjacentCountries.add(countries[2]);
         countries[3].adjacentCountries.add(countries[6]);
         countries[3].adjacentCountries.add(countries[7]);
         countries[3].adjacentCountries.add(countries[8]);
 
-        countries[4].adjacentCountries = new TreeSet<Country>();
+        //Greenland
+        countries[4].adjacentCountries = new LinkedList<>();
         countries[4].adjacentCountries.add(countries[5]);
         countries[4].adjacentCountries.add(countries[6]);
         countries[4].adjacentCountries.add(countries[7]);
         countries[4].adjacentCountries.add(countries[14]);
 
-        countries[5].adjacentCountries = new TreeSet<Country>();
+        //NorthTerritory
+        countries[5].adjacentCountries = new LinkedList<>();
+        countries[5].adjacentCountries.add(countries[0]);
+        countries[5].adjacentCountries.add(countries[1]);
         countries[5].adjacentCountries.add(countries[6]);
+        countries[5].adjacentCountries.add(countries[4]);
 
-        countries[6].adjacentCountries = new TreeSet<Country>();
+        //Ontario
+        countries[6].adjacentCountries = new LinkedList<>();
+        countries[6].adjacentCountries.add(countries[1]);
         countries[6].adjacentCountries.add(countries[7]);
+        countries[6].adjacentCountries.add(countries[3]);
+        countries[6].adjacentCountries.add(countries[5]);
         countries[6].adjacentCountries.add(countries[8]);
+        countries[6].adjacentCountries.add(countries[4]);
 
-        countries[7].adjacentCountries = new TreeSet<Country>();
+        //Quebec
+        countries[7].adjacentCountries = new LinkedList<>();
+        countries[7].adjacentCountries.add(countries[4]);
+        countries[7].adjacentCountries.add(countries[3]);
+        countries[7].adjacentCountries.add(countries[6]);
 
-        countries[8].adjacentCountries = new TreeSet<Country>();
+        //WestUS
+        countries[8].adjacentCountries = new LinkedList<>();
+        countries[8].adjacentCountries.add(countries[3]);
+        countries[8].adjacentCountries.add(countries[6]);
+        countries[8].adjacentCountries.add(countries[1]);
+        countries[8].adjacentCountries.add(countries[2]);
 
-        countries[9].adjacentCountries = new TreeSet<Country>();
+        //Venezuela
+        countries[9].adjacentCountries = new LinkedList<>();
         countries[9].adjacentCountries.add(countries[10]);
         countries[9].adjacentCountries.add(countries[11]);
+        countries[9].adjacentCountries.add(countries[2]);
 
-        countries[10].adjacentCountries = new TreeSet<Country>();
+        //Brazil
+        countries[10].adjacentCountries = new LinkedList<>();
+        countries[10].adjacentCountries.add(countries[9]);
         countries[10].adjacentCountries.add(countries[11]);
         countries[10].adjacentCountries.add(countries[12]);
         countries[10].adjacentCountries.add(countries[22]);
 
-        countries[11].adjacentCountries = new TreeSet<Country>();
+        //Peru
+        countries[11].adjacentCountries = new LinkedList<>();
+        countries[11].adjacentCountries.add(countries[10]);
         countries[11].adjacentCountries.add(countries[12]);
+        countries[11].adjacentCountries.add(countries[9]);
 
-        countries[12].adjacentCountries = new TreeSet<Country>();
+        //Argentina
+        countries[12].adjacentCountries = new LinkedList<>();
+        countries[12].adjacentCountries.add(countries[10]);
+        countries[12].adjacentCountries.add(countries[11]);
 
-        countries[13].adjacentCountries = new TreeSet<Country>();
+        //Britain
+        countries[13].adjacentCountries = new LinkedList<>();
         countries[13].adjacentCountries.add(countries[14]);
         countries[13].adjacentCountries.add(countries[15]);
         countries[13].adjacentCountries.add(countries[16]);
         countries[13].adjacentCountries.add(countries[19]);
 
-        countries[14].adjacentCountries = new TreeSet<Country>();
+        //Iceland
+        countries[14].adjacentCountries = new LinkedList<>();
+        countries[14].adjacentCountries.add(countries[4]);
+        countries[14].adjacentCountries.add(countries[13]);
+        countries[14].adjacentCountries.add(countries[16]);
 
-        countries[15].adjacentCountries = new TreeSet<Country>();
+        //NorthEurope
+        countries[15].adjacentCountries = new LinkedList<>();
+        countries[15].adjacentCountries.add(countries[13]);
         countries[15].adjacentCountries.add(countries[16]);
         countries[15].adjacentCountries.add(countries[17]);
         countries[15].adjacentCountries.add(countries[18]);
         countries[15].adjacentCountries.add(countries[19]);
 
-        countries[16].adjacentCountries = new TreeSet<Country>();
+        //Scandinavia
+        countries[16].adjacentCountries = new LinkedList<>();
+        countries[16].adjacentCountries.add(countries[14]);
+        countries[16].adjacentCountries.add(countries[13]);
+        countries[16].adjacentCountries.add(countries[15]);
         countries[16].adjacentCountries.add(countries[17]);
 
-        countries[17].adjacentCountries = new TreeSet<Country>();
+        //Ukraine
+        countries[17].adjacentCountries = new LinkedList<>();
         countries[17].adjacentCountries.add(countries[18]);
         countries[17].adjacentCountries.add(countries[26]);
         countries[17].adjacentCountries.add(countries[27]);
         countries[17].adjacentCountries.add(countries[28]);
+        countries[17].adjacentCountries.add(countries[16]);
+        countries[17].adjacentCountries.add(countries[15]);
 
-        countries[18].adjacentCountries = new TreeSet<Country>();
+        //SouthEurope
+        countries[18].adjacentCountries = new LinkedList<>();
+        countries[18].adjacentCountries.add(countries[15]);
         countries[18].adjacentCountries.add(countries[19]);
         countries[18].adjacentCountries.add(countries[21]);
         countries[18].adjacentCountries.add(countries[22]);
         countries[18].adjacentCountries.add(countries[26]);
 
-        countries[19].adjacentCountries = new TreeSet<Country>();
+        //WestEurope
+        countries[19].adjacentCountries = new LinkedList<>();
         countries[19].adjacentCountries.add(countries[22]);
+        countries[19].adjacentCountries.add(countries[13]);
+        countries[19].adjacentCountries.add(countries[15]);
+        countries[19].adjacentCountries.add(countries[18]);
 
-        countries[20].adjacentCountries = new TreeSet<Country>();
+        //Madagascar
+        countries[20].adjacentCountries = new LinkedList<>();
         countries[20].adjacentCountries.add(countries[23]);
         countries[20].adjacentCountries.add(countries[25]);
 
-        countries[21].adjacentCountries = new TreeSet<Country>();
+        //Egypt
+        countries[21].adjacentCountries = new LinkedList<>();
+        countries[21].adjacentCountries.add(countries[18]);
         countries[21].adjacentCountries.add(countries[22]);
         countries[21].adjacentCountries.add(countries[23]);
         countries[21].adjacentCountries.add(countries[26]);
 
-        countries[22].adjacentCountries = new TreeSet<Country>();
+        //NorthAfrica
+        countries[22].adjacentCountries = new LinkedList<>();
+        countries[22].adjacentCountries.add(countries[19]);
+        countries[22].adjacentCountries.add(countries[10]);
+        countries[22].adjacentCountries.add(countries[21]);
         countries[22].adjacentCountries.add(countries[23]);
         countries[22].adjacentCountries.add(countries[24]);
 
-        countries[23].adjacentCountries = new TreeSet<Country>();
+        //EastAfrica
+        countries[23].adjacentCountries = new LinkedList<>();
+        countries[23].adjacentCountries.add(countries[21]);
+        countries[23].adjacentCountries.add(countries[22]);
+        countries[23].adjacentCountries.add(countries[20]);
         countries[23].adjacentCountries.add(countries[24]);
         countries[23].adjacentCountries.add(countries[25]);
         countries[23].adjacentCountries.add(countries[26]);
 
-        countries[24].adjacentCountries = new TreeSet<Country>();
+        //Congo
+        countries[24].adjacentCountries = new LinkedList<>();
+        countries[24].adjacentCountries.add(countries[22]);
+        countries[24].adjacentCountries.add(countries[23]);
         countries[24].adjacentCountries.add(countries[25]);
 
-        countries[25].adjacentCountries = new TreeSet<Country>();
+        //SouthAfrica
+        countries[25].adjacentCountries = new LinkedList<>();
+        countries[25].adjacentCountries.add(countries[20]);
+        countries[25].adjacentCountries.add(countries[23]);
+        countries[25].adjacentCountries.add(countries[24]);
 
-        countries[26].adjacentCountries = new TreeSet<Country>();
+        //MiddleEast
+        countries[26].adjacentCountries = new LinkedList<>();
+        countries[26].adjacentCountries.add(countries[17]);
+        countries[26].adjacentCountries.add(countries[18]);
+        countries[26].adjacentCountries.add(countries[21]);
+        countries[26].adjacentCountries.add(countries[23]);
         countries[26].adjacentCountries.add(countries[27]);
         countries[26].adjacentCountries.add(countries[29]);
 
-        countries[27].adjacentCountries = new TreeSet<Country>();
+        //Kazakhstan
+        countries[27].adjacentCountries = new LinkedList<>();
+        countries[27].adjacentCountries.add(countries[17]);
+        countries[27].adjacentCountries.add(countries[26]);
         countries[27].adjacentCountries.add(countries[28]);
         countries[27].adjacentCountries.add(countries[29]);
         countries[27].adjacentCountries.add(countries[30]);
 
-        countries[28].adjacentCountries = new TreeSet<Country>();
+        //Ural
+        countries[28].adjacentCountries = new LinkedList<>();
+        countries[28].adjacentCountries.add(countries[17]);
+        countries[28].adjacentCountries.add(countries[27]);
         countries[28].adjacentCountries.add(countries[30]);
         countries[28].adjacentCountries.add(countries[31]);
 
-        countries[29].adjacentCountries = new TreeSet<Country>();
+        //India
+        countries[29].adjacentCountries = new LinkedList<>();
+        countries[29].adjacentCountries.add(countries[26]);
+        countries[29].adjacentCountries.add(countries[27]);
         countries[29].adjacentCountries.add(countries[30]);
         countries[29].adjacentCountries.add(countries[32]);
 
-        countries[30].adjacentCountries = new TreeSet<Country>();
+        //China
+        countries[30].adjacentCountries = new LinkedList<>();
+        countries[30].adjacentCountries.add(countries[28]);
+        countries[30].adjacentCountries.add(countries[27]);
+        countries[30].adjacentCountries.add(countries[29]);
         countries[30].adjacentCountries.add(countries[31]);
         countries[30].adjacentCountries.add(countries[32]);
         countries[30].adjacentCountries.add(countries[33]);
 
-        countries[31].adjacentCountries = new TreeSet<Country>();
+        //Siberia
+        countries[31].adjacentCountries = new LinkedList<>();
+        countries[31].adjacentCountries.add(countries[28]);
+        countries[31].adjacentCountries.add(countries[30]);
         countries[31].adjacentCountries.add(countries[33]);
         countries[31].adjacentCountries.add(countries[34]);
         countries[31].adjacentCountries.add(countries[35]);
 
-        countries[32].adjacentCountries = new TreeSet<Country>();
+        //Siam
+        countries[32].adjacentCountries = new LinkedList<>();
         countries[32].adjacentCountries.add(countries[38]);
+        countries[32].adjacentCountries.add(countries[29]);
+        countries[32].adjacentCountries.add(countries[30]);
 
-        countries[33].adjacentCountries = new TreeSet<Country>();
+        //Mongolia
+        countries[33].adjacentCountries = new LinkedList<>();
+        countries[33].adjacentCountries.add(countries[30]);
+        countries[33].adjacentCountries.add(countries[31]);
         countries[33].adjacentCountries.add(countries[34]);
         countries[33].adjacentCountries.add(countries[36]);
         countries[33].adjacentCountries.add(countries[37]);
 
-        countries[34].adjacentCountries = new TreeSet<Country>();
+        //Irkutsk
+        countries[34].adjacentCountries = new LinkedList<>();
+        countries[34].adjacentCountries.add(countries[31]);
+        countries[34].adjacentCountries.add(countries[33]);
         countries[34].adjacentCountries.add(countries[35]);
         countries[34].adjacentCountries.add(countries[36]);
 
-        countries[35].adjacentCountries = new TreeSet<Country>();
+        //Yakutsk
+        countries[35].adjacentCountries = new LinkedList<>();
+        countries[35].adjacentCountries.add(countries[31]);
+        countries[35].adjacentCountries.add(countries[34]);
         countries[35].adjacentCountries.add(countries[36]);
 
-        countries[36].adjacentCountries = new TreeSet<Country>();
+        //Kamchatka
+        countries[36].adjacentCountries = new LinkedList<>();
+        countries[36].adjacentCountries.add(countries[0]);
+        countries[36].adjacentCountries.add(countries[34]);
+        countries[36].adjacentCountries.add(countries[35]);
         countries[36].adjacentCountries.add(countries[37]);
 
-        countries[37].adjacentCountries = new TreeSet<Country>();
+        //Japan
+        countries[37].adjacentCountries = new LinkedList<>();
+        countries[37].adjacentCountries.add(countries[36]);
+        countries[37].adjacentCountries.add(countries[33]);
 
-        countries[38].adjacentCountries = new TreeSet<Country>();
+        //Indonesia
+        countries[38].adjacentCountries = new LinkedList<>();
+        countries[38].adjacentCountries.add(countries[32]);
         countries[38].adjacentCountries.add(countries[39]);
         countries[38].adjacentCountries.add(countries[41]);
 
-        countries[39].adjacentCountries = new TreeSet<Country>();
+        //WestAustralia
+        countries[39].adjacentCountries = new LinkedList<>();
+        countries[39].adjacentCountries.add(countries[38]);
         countries[39].adjacentCountries.add(countries[40]);
         countries[39].adjacentCountries.add(countries[41]);
 
-        countries[40].adjacentCountries = new TreeSet<Country>();
+        //EastAustralia
+        countries[40].adjacentCountries = new LinkedList<>();
+        countries[40].adjacentCountries.add(countries[39]);
         countries[40].adjacentCountries.add(countries[41]);
 
-        countries[41].adjacentCountries = new TreeSet<Country>();
+        //NewGuinea
+        countries[41].adjacentCountries = new LinkedList<>();
+        countries[41].adjacentCountries.add(countries[38]);
+        countries[41].adjacentCountries.add(countries[39]);
+        countries[41].adjacentCountries.add(countries[40]);
 
-        for (Country country : countries) {
-            for (Country c : country.adjacentCountries) {
-                c.adjacentCountries.add(country);
-            }
-
-        }
 
         return  countries;
+    }
+    public  boolean findPath(Country country,Country country2){
+        for(Country c: country.getAdjacentCountries()){
+            if(c.getOwner() == country.getOwner()) {
+                for (Country c1 : c.getAdjacentCountries()) {
+                    if (c1.adjacentCountries.contains(country2) && c1.getOwner() == country.getOwner()) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     //initialize country owners
