@@ -5,13 +5,18 @@ import java.util.*;
 public class Country implements Comparable<Country>{
 
     private final String name;
-    int numTroops;
+    int numTroops,id;
     private Player owner;
     LinkedList<Country> adjacentCountries;
 
-    public Country (String name) {
+    public int getId() {
+        return id;
+    }
+
+    public Country (String name, int id) {
         this.name = name;
         numTroops = 1;
+        this.id = id;
     }
 
     //Remove numTroops from the currently country after 1.fortify or 2.attack result

@@ -177,6 +177,12 @@ public class BoardController  {
                         twoSelected = true;
                         oneSelected = false;
                     }
+                    else {
+                        System.out.println("Reset");
+                        updateMap(world.getPlayers(), scene1);
+                        twoSelected =false;
+                        oneSelected = false;
+                    }
                 //Reset selected countries if the user select a third country
                 }else{
                     System.out.println("Reset");
@@ -186,11 +192,6 @@ public class BoardController  {
                     twoSelected =false;
                     oneSelected = false;
                 }
-
-
-
-
-
             }
         }
 
@@ -209,10 +210,11 @@ public class BoardController  {
             } else {
                 if( oneSelected && !twoSelected) {
                     country2 = world.findCountry(buttonId);
-                    if (player.countriesOwned.contains(country2) && world.findPath(country,country2)) {
+
+                    if (player.countriesOwned.contains(country2) && world.findPath(country,country2) && country != country2) {
                         Button b2 = (Button) button.lookup("#" + country2.toString());
                         b2.setStyle("fx-border-color: #ffffff");
-                        System.out.println("Selected Country:" + country2.toString());
+                        System.out.println("Selected Country2:" + country2.toString());
                         if (world.moveArmyCheck(country, country2, player)) {
                             Parent root;
                             try {
@@ -232,6 +234,11 @@ public class BoardController  {
                             }
                         }
                         twoSelected = true;
+                        oneSelected = false;
+                    }else {
+                        System.out.println("Reset");
+                        updateMap(world.getPlayers(), scene1);
+                        twoSelected =false;
                         oneSelected = false;
                     }
                 }else{

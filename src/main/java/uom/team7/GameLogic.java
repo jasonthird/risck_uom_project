@@ -32,7 +32,7 @@ public class GameLogic {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Board.fxml"));
             root = fxmlLoader.load();
-            scene = new Scene(root, 1200, 900);
+            scene = new Scene(root, 1024, 750);
 
             boardController = fxmlLoader.getController();
             boardController.updateMap(players, scene);
@@ -50,6 +50,7 @@ public class GameLogic {
                     try {
                         currentPlayer = players[i];
                         if( currentPlayer.statusCheck()){
+
                             if(currentPlayer == players[numPlayers - 1]){
                                 i = 0;
                             }else {
