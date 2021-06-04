@@ -1,12 +1,12 @@
-package uom.team7;
+package uom.team7.model;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import uom.team7.controllers.BoardController;
 import java.io.IOException;
-
 
 public class GameLogic {
 
@@ -24,7 +24,7 @@ public class GameLogic {
         //Create a new stage
         Parent root;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Board.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(BoardController.class.getResource("Board.fxml"));
             root = fxmlLoader.load();
             scene = new Scene(root, 1024, 750);
             boardController = fxmlLoader.getController();

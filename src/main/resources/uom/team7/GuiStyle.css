@@ -34,11 +34,22 @@
     -fx-min-height: 45px;
     -fx-max-width:  45px;
     -fx-max-height: 45px;
-    -fx-border-color: #000000;
-    -fx-font-size: 15;
+    -fx-border-color: black;
+    -fx-font-size: 18;
     -fx-background-insets: 0;
 }
-
+.CountryButtonHighlight{
+    -fx-background-radius: 5em;
+    -fx-border-radius: 5em;
+    -fx-border-width: 4;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-max-width:  50px;
+    -fx-max-height: 50px;
+    -fx-border-color: white;
+    -fx-font-size: 20;
+    -fx-background-insets: 0;
+}
 .OkButton{
     -fx-background-color:  #0fea88;
     -fx-text-fill:  black;

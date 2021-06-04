@@ -1,4 +1,4 @@
-package uom.team7;
+package uom.team7.model;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -40,7 +40,5 @@ public class Cards {
     public int[] getCards() {
         return numberCards;
     }
-
-    public void addCards(int type,int num){ numberCards[type] += num; }
 
 }

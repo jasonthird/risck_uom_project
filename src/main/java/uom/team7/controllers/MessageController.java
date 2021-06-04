@@ -1,4 +1,4 @@
-package uom.team7;
+package uom.team7.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -6,6 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
+import uom.team7.model.GameLogic;
+import uom.team7.model.Country;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,6 +26,7 @@ public class MessageController implements Initializable {
         slider.valueProperty().addListener((observableValue, number, t1) -> troopLabel.setText(String.valueOf((int)slider.getValue())));
     }
 
+    //Update the country(flags) values,updates world and map
     @FXML
     public void fortify() {
         game.getBoardController().setOneSelected(false);
@@ -43,6 +47,7 @@ public class MessageController implements Initializable {
         slider.setMin(0);
         slider.setValue(0);
         troopLabel.setText("0");
+
         if(conquerLabel != null) {
             conquerLabel.setStyle("-fx-text-fill:" + game.getCurrentPlayer().getColor());
         }

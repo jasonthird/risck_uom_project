@@ -1,4 +1,4 @@
-package uom.team7;
+package uom.team7.model;
 
 import java.util.*;
 
@@ -433,7 +433,7 @@ public class World{
         Collections.shuffle(Arrays.asList(countries));
         int playerID = 0;
         for (Country country : countries) {
-            players[playerID].countriesOwned.add(country);
+            players[playerID].getCountriesOwned().add(country);
             country.setOwner(players[playerID]);
             playerID = (playerID + 1) % numPlayers;
         }
@@ -441,14 +441,14 @@ public class World{
 
     //calculate the number of troops the player receives at the begging of the turn
     public  void updateUnsedTroops(Player player) {
-        int numTroops = (player.countriesOwned.size() / 3); // + continent_bonus?
+        int numTroops = (player.getCountriesOwned().size() / 3); // + continent_bonus?
         player.setUnsedTroops(Math.max(3, numTroops));
     }
 
     //fortify one country only
     public Country fortify(String buttonText,Player player){
         Country country = findCountry(buttonText);
-        if (player.countriesOwned.contains(country) && player.getUnsedTroops() != 0) {
+        if (player.getCountriesOwned().contains(country) && player.getUnsedTroops() != 0) {
             country.setNumTroops(1);
             country.getOwner().removeTroops(1);
         }
@@ -465,8 +465,8 @@ public class World{
 
     //Constrains for moveArmy
     public boolean moveArmyCheck(Country country,Country country2,Player player){
-        return  player.countriesOwned.contains(country)  &&
-                player.countriesOwned.contains(country2) &&
+        return  player.getCountriesOwned().contains(country)  &&
+                player.getCountriesOwned().contains(country2) &&
                 country != country2  &&  country.getNumTroops()  > 1;
     }
 
@@ -489,13 +489,13 @@ public class World{
 
         for(int i = 0; i < 2; i++) {
             if (attacker[i].equals(defender[i])) {
-                System.out.println("Equals:attacker loose");
+                System.out.println("Player: " + own.getOwner().getId() + " loose");
                 own.removeNumTroops(1);
             } else if (attacker[i] > defender[i]) {
-                System.out.println("Attacker win");
+                System.out.println("Player: " + own.getOwner().getId() +" win");
                 enemy.removeNumTroops(1);
             } else {
-                System.out.println("Attacker loose");
+                System.out.println("Player: " + own.getOwner().getId() +" loose");
                 own.removeNumTroops(1);
             }
 
@@ -515,8 +515,8 @@ public class World{
 
     //Constrains for attack
     public boolean attackCheck(Country attacker,Country defender,Player player){
-        return  player.countriesOwned.contains(attacker)  &&
-                !player.countriesOwned.contains(defender) &&
+        return  player.getCountriesOwned().contains(attacker)  &&
+                !player.getCountriesOwned().contains(defender) &&
                 attacker.getNumTroops() >= 3;
     }
 
@@ -531,8 +531,8 @@ public class World{
             }
             enemy.setNum(1);
             own.setNum(own.getNumTroops()-1);
-            own.getOwner().countriesOwned.add(enemy);
-            enemy.getOwner().countriesOwned.remove(enemy);
+            own.getOwner().getCountriesOwned().add(enemy);
+            enemy.getOwner().getCountriesOwned().remove(enemy);
             enemy.setOwner(own.getOwner());
             return true;
         }

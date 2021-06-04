@@ -1,4 +1,4 @@
-package uom.team7;
+package uom.team7.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.Stage;
+import uom.team7.model.GameLogic;
 
 
 public class TradeCardsController {
@@ -18,6 +19,7 @@ public class TradeCardsController {
     private Spinner<Integer> troopSpinner, cavalrySpinner, artillerySpinner;
     private GameLogic game;
 
+    //Close the window
     @FXML
     public void BackButton() {
         Stage stage = (Stage) closeButton.getScene().getWindow();
@@ -25,6 +27,7 @@ public class TradeCardsController {
         game.getBoardController().getTradeButton().setDisable(false);
     }
 
+    //updates player's cards and the window
     @FXML
     public void TradeButton() {
         int numOfTrades = game.getWorld().redeemCards(troopSpinner.getValue(), cavalrySpinner.getValue(), artillerySpinner.getValue(), game.getCurrentPlayer());
@@ -41,6 +44,8 @@ public class TradeCardsController {
         if(!game.getCurrentPlayer().getCards().fullHandCheck()){
             closeButton.setDisable(false);
         }
+
+        //Initialize spinners
         SpinnerValueFactory<Integer> troopValue = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, game.getCurrentPlayer().getCards().getCards()[0], 0);
         SpinnerValueFactory<Integer> cavalryValue = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, game.getCurrentPlayer().getCards().getCards()[1], 0);
         SpinnerValueFactory<Integer> artilleryValue = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, game.getCurrentPlayer().getCards().getCards()[2], 0);

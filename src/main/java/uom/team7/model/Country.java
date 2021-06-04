@@ -1,4 +1,4 @@
-package uom.team7;
+package uom.team7.model;
 
 import java.util.*;
 

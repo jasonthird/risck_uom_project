@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.MessageController">
+<AnchorPane prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.controllers.MessageController">
     <children>
         <Label fx:id="conquerLabel" layoutX="32.0" layoutY="14.0" prefHeight="41.0" prefWidth="250.0" text="YOU HAVE CONQUER" textFill="WHITE" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="10.0">
             <font>

@@ -1,4 +1,4 @@
-package uom.team7;
+package uom.team7.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,6 +16,6 @@ public class WinnerController {
         java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
         Stage stage = (Stage) okButton.getScene().getWindow();
         stage.close();
-        App.setRoot(App.getScene());
+
     }
 }

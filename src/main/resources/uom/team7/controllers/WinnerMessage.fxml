@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="250.0" prefWidth="450.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.WinnerController">
+<AnchorPane prefHeight="250.0" prefWidth="450.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.controllers.WinnerController">
    <children>
       <Label layoutX="137.0" prefHeight="55.0" prefWidth="176.0" text="VICTORY" textFill="#066ed6" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="137.0" AnchorPane.topAnchor="0.0">
          <font>

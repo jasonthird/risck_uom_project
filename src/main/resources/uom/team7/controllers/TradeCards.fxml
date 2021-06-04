@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="300.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.TradeCardsController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="300.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.controllers.TradeCardsController">
    <children>
       <Button layoutX="193.0" layoutY="324.0" mnemonicParsing="false" onAction="#TradeButton" prefHeight="37.0" prefWidth="80.0" style="-fx-background-color: #0fea88; -fx-background-radius: 5em;" text="TRADE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="27.0">
          <font>

@@ -1,4 +1,4 @@
-package uom.team7;
+package uom.team7.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class Player {
     private int unsedTroops;
     private boolean dead;
     private boolean wonCard;
-    List<Country> countriesOwned;
+    private final List<Country> countriesOwned;
 
     public Player(){
         cards = new Cards();
@@ -69,5 +69,7 @@ public class Player {
     }
 
     public int getId() { return id; }
+
+    public List<Country> getCountriesOwned() { return countriesOwned; }
 
 }

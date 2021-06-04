@@ -1,11 +1,11 @@
-package uom.team7;
+package uom.team7.controllers;
 
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-
+import uom.team7.App;
 
 public class StartMenuController {
 

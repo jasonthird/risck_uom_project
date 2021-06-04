@@ -1,4 +1,4 @@
-package uom.team7;
+package uom.team7.controllers;
 
 
 import java.io.IOException;
@@ -10,6 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import uom.team7.model.GameLogic;
+import uom.team7.model.Country;
+import uom.team7.model.Player;
 
 import static java.util.Objects.*;
 
@@ -24,6 +27,7 @@ public class BoardController  {
     private boolean twoSelected = false,oneSelected = false;
     private GameLogic game;
 
+    //Opens the StartMenu window
     @FXML
     private void switchToStartMenu() {
         //close current stage
@@ -32,7 +36,7 @@ public class BoardController  {
         //create a new stage
         Parent root;
         try {
-            root = FXMLLoader.load(requireNonNull(getClass().getResource("FXML/StartMenu.fxml")));
+            root = FXMLLoader.load(requireNonNull(StartMenuController.class.getResource("StartMenu.fxml")));
             stage.setScene(new Scene(root, 800, 600));
             stage.centerOnScreen();
             stage.show();
@@ -41,6 +45,7 @@ public class BoardController  {
         }
     }
 
+    //Calculates the attack result,reset flags,updates map and opens fortify and winner window
     @FXML
     private void attackButton() {
         //Sets the attackButton disable again
@@ -49,12 +54,12 @@ public class BoardController  {
         //Reset selected flags
         oneSelected = false;
         twoSelected = false;
-        System.out.println("Player:"+game.getCurrentPlayer().getId()+" Attack: "+country2.toString()+"/From: "+country.toString());
+        System.out.println("Player: "+game.getCurrentPlayer().getId()+" Attack: "+country2.toString()+" /From: "+country.toString());
         //Initialize attack
         if(game.getWorld().attack(country,country2)) {
             Parent root;
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Victory.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(MessageController.class.getResource("Victory.fxml"));
                 root = fxmlLoader.load();
                 MessageController messageController = fxmlLoader.getController();
                 messageController.init(game,country,country2);
@@ -75,7 +80,7 @@ public class BoardController  {
         if(game.getWorld().checkWin(game.getWorld().getPlayers())){
             Parent root;
             try {
-                root = FXMLLoader.load(requireNonNull(getClass().getResource("FXML/WinnerMessage.fxml")));
+                root = FXMLLoader.load(requireNonNull(MessageController.class.getResource("WinnerMessage.fxml")));
                 Stage stage = new Stage();
                 stage.setTitle("RISK");
                 stage.setScene(new Scene(root, 450, 200));
@@ -92,6 +97,7 @@ public class BoardController  {
         updateMap(game.getWorld().getPlayers(), game.getScene());
     }
 
+    //Skip to the next phase/next player,updates map and reset flag-values
     @FXML
     private void skipButton() {
         game.setState(game.getState() + 1);
@@ -100,11 +106,12 @@ public class BoardController  {
         updateMap(game.getWorld().getPlayers(), game.getScene());
     }
 
+    //Opens the trade-cards window and initialise controller
     @FXML
     private void tradeCardsButton() {
         Parent root;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/TradeCards.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(TradeCardsController.class.getResource("TradeCards.fxml"));
             root = fxmlLoader.load();
             TradeCardsController tradeCardsController = fxmlLoader.getController();
             tradeCardsController.init(game);
@@ -121,6 +128,9 @@ public class BoardController  {
         }
     }
 
+    /* This is the event handler for country-buttons.Each phase has different handler
+       for the buttons.
+     */
     @FXML
     private void loadWhenClicked(ActionEvent event) {
 
@@ -141,10 +151,10 @@ public class BoardController  {
             //If the first country is selected do stuff
             if ( !oneSelected && !twoSelected ){
                 country = game.getWorld().findCountry(buttonId);
-                if(game.getCurrentPlayer().countriesOwned.contains(country) && country.getNumTroops() > 1) {
+                if(game.getCurrentPlayer().getCountriesOwned().contains(country) && country.getNumTroops() > 1) {
                     Button b1 = (Button) button.lookup("#" + country.toString());
-                    b1.setStyle("fx-border-color: #ffffff");
-                    System.out.println("Selected Country:" + country.toString());
+                    b1.getStyleClass().add("CountryButtonHighlight");
+                    System.out.println("Selected Country: " + country.toString());
                     oneSelected = true;
                 }
             }
@@ -152,10 +162,10 @@ public class BoardController  {
                 //If the second country is selected do stuff
                 if( oneSelected && !twoSelected) {
                     country2 = game.getWorld().findCountry(buttonId);
-                    if(!game.getCurrentPlayer().countriesOwned.contains(country2) && country.getAdjacentCountries().contains(country2)) {
+                    if(!game.getCurrentPlayer().getCountriesOwned().contains(country2) && country.getAdjacentCountries().contains(country2)) {
                         Button b2 = (Button) button.lookup("#" + country2.toString());
-                        b2.setStyle("fx-border-color: #ffffff");
-                        System.out.println("Selected Country:" + country2.toString());
+                        b2.getStyleClass().add("CountryButtonHighlight");
+                        System.out.println("Selected Country: " + country2.toString());
                         if (game.getWorld().attackCheck(country, country2, game.getCurrentPlayer())) {
                             attackButton.setStyle("-fx-background-color: #0fea88");
                             attackButton.setDisable(false);
@@ -182,23 +192,23 @@ public class BoardController  {
             buttonId = button.getId();
             if (!oneSelected && !twoSelected) {
                 country = game.getWorld().findCountry(buttonId);
-                if(game.getCurrentPlayer().countriesOwned.contains(country) & country.getNumTroops() > 1) {
+                if(game.getCurrentPlayer().getCountriesOwned().contains(country) & country.getNumTroops() > 1) {
                     Button b1 = (Button) button.lookup("#" + country.toString());
-                    b1.setStyle("fx-border-color: #ffffff");
-                    System.out.println("Selected Country:" + country.toString());
+                    b1.getStyleClass().add("CountryButtonHighlight");
+                    System.out.println("Selected Country: " + country.toString());
                     oneSelected = true;
                 }
             } else {
                 if( oneSelected && !twoSelected) {
                     country2 = game.getWorld().findCountry(buttonId);
-                    if (game.getCurrentPlayer().countriesOwned.contains(country2) && game.getWorld().findPath(country,country2) && country != country2) {
+                    if (game.getCurrentPlayer().getCountriesOwned().contains(country2) && game.getWorld().findPath(country,country2) && country != country2) {
                         Button b2 = (Button) button.lookup("#" + country2.toString());
-                        b2.setStyle("fx-border-color: #ffffff");
-                        System.out.println("Selected Country:" + country2.toString());
+                        b2.getStyleClass().add("CountryButtonHighlight");
+                        System.out.println("Selected Country: " + country2.toString());
                         if (game.getWorld().moveArmyCheck(country, country2, game.getCurrentPlayer())) {
                             Parent root;
                             try {
-                                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Fortify.fxml"));
+                                FXMLLoader fxmlLoader = new FXMLLoader(MessageController.class.getResource("Fortify.fxml"));
                                 root = fxmlLoader.load();
                                 MessageController messageController = fxmlLoader.getController();
                                 messageController.init(game,country, country2);
@@ -236,10 +246,13 @@ public class BoardController  {
         unsedTroopsLabel.setText("x" + game.getCurrentPlayer().getUnsedTroops());
     }
 
+                    /*GUI Setters*/
     public  void updateMap(Player[] players, Scene scene){
         for (Player p : players) {
-            for (Country c : p.countriesOwned) {
+            for (Country c : p.getCountriesOwned()) {
                 Button b = (Button) scene.lookup("#" + c.toString());
+                b.getStyleClass().clear();
+                b.getStyleClass().add("CountryButton");
                 b.setText(String.valueOf((c.getNumTroops())));
                 b.setStyle("-fx-background-color:" + p.getColor());
             }
@@ -288,7 +301,7 @@ public class BoardController  {
         if (game.isFlag()) {
             Parent root;
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/TradeCards.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(TradeCardsController.class.getResource("TradeCards.fxml"));
                 //root = FXMLLoader.load(getClass().getResource("FXML/TradeCards.fxml"));
                 root = fxmlLoader.load();
                 Stage stage = new Stage();
@@ -309,6 +322,9 @@ public class BoardController  {
         game.setFlag(false);
     }
 
+
+
+                          /*Setters & Getters*/
 
     public void setTwoSelected(boolean twoSelected) { this.twoSelected = twoSelected; }
 

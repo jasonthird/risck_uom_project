@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="170.0" prefWidth="250.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.MessageController">
+<AnchorPane prefHeight="170.0" prefWidth="250.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.controllers.MessageController">
    <children>
       <Label fx:id="fortifyLabel" layoutX="77.0" layoutY="8.0" prefHeight="40.0" prefWidth="98.0" text="FORTIFY" textFill="WHITE" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="5.0">
          <font>
