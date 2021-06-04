@@ -10,15 +10,19 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Stage primaryStage;
-    private static Scene StartMenu;
+
+    public static Scene getScene() {
+        return startMenu;
+    }
+
+    private static Scene startMenu;
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
-        StartMenu = new Scene(loadFXML(), 800, 600);
-
+        startMenu = new Scene(loadFXML(), 800, 600);
         primaryStage.setTitle("Risck");
-                                               //icon set
-        primaryStage.setScene(StartMenu);
+        //icon set
+        primaryStage.setScene(startMenu);
         primaryStage.setResizable(false);
         primaryStage.centerOnScreen();
         primaryStage.show();
@@ -37,9 +41,5 @@ public class App extends Application {
         launch(args);
     }
 
-    public static void startGame(int numPlayers) throws IOException {
-       new GameLogic(numPlayers, primaryStage);
-    }
-
-
+    public static void startGame(int numPlayers) { new GameLogic(numPlayers, primaryStage); }
 }

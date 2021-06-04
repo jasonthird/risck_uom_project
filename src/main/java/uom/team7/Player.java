@@ -8,12 +8,13 @@ import java.util.List;
  */
 
 public class Player {
-    int id;
-    String color;
-    Cards cards;
-    int unsedTroops;
-    boolean dead;
-    boolean wonCard;
+
+    private int id;
+    private String color;
+    private final Cards cards;
+    private int unsedTroops;
+    private boolean dead;
+    private boolean wonCard;
     List<Country> countriesOwned;
 
     public Player(){
@@ -26,35 +27,35 @@ public class Player {
     //Check if the player has no owned countries left(dead)
     public boolean statusCheck(){
         if(countriesOwned.isEmpty()){
-            return  dead = true;
+            return  this.dead = true;
         }
         else{
-            return  dead = false;
+            return  this.dead = false;
         }
+    }
+
+    public void removeTroops(int numTroops){ if(unsedTroops > 0){ unsedTroops -= numTroops; } }
+
+                         /*Setters & Getters*/
+
+    public int getUnsedTroops() { return this.unsedTroops; }
+
+    public void setUnsedTroops(int unsedTroops) {
+        this.unsedTroops += unsedTroops;
     }
 
     public void setWonCard(boolean wonCard) {
         this.wonCard = wonCard;
     }
 
-    public void removeTroops(int numTroops){
-        if(unsedTroops > 0){ unsedTroops -= numTroops; }
-    }
-
-                         /*Setters & Getters*/
-
-    public int getUnsedTroops() { return unsedTroops; }
-
-    public void setUnsedTroops(int unsedTroops) {
-        this.unsedTroops += unsedTroops;
-    }
+    public Cards getCards() { return this.cards; }
 
     public boolean isWonCard() {
         return wonCard;
     }
 
-    public void setColor(String color1){
-        color = color1;
+    public void setColor(String color){
+        this.color = color;
     }
 
     public String getColor(){
@@ -66,4 +67,7 @@ public class Player {
     public void setId(int i){
         this.id = i + 1;
     }
+
+    public int getId() { return id; }
+
 }

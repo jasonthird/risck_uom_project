@@ -10,211 +10,152 @@ import java.io.IOException;
 
 public class GameLogic {
 
-    public  int state = 0, i = 0;
-    public World world;
-    private final Player[] players;
-    BoardController boardController;
-    public Scene scene;
+    private  int state = 0, turn = 0;
+    private boolean flag;
+    private Scene scene;
+    private final World world;
     private Player currentPlayer;
-    public boolean flag;
+    private BoardController boardController;
 
-
-
-    public GameLogic(int numPlayers, Stage stage) throws IOException {
+    public GameLogic(int numPlayers, Stage stage) {
 
         //Game Data initialization
         world = new World(numPlayers);
-        players = world.getPlayers();
-
-
         //Create a new stage
         Parent root;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Board.fxml"));
             root = fxmlLoader.load();
             scene = new Scene(root, 1024, 750);
-
             boardController = fxmlLoader.getController();
-            boardController.updateMap(players, scene);
-
+            boardController.updateMap(world.getPlayers(), scene);
             stage.setScene(scene);
             stage.alwaysOnTopProperty();
-            stage.centerOnScreen();
-            stage.show();
-           /* This Thread calculate's the current state of the current player.
-               The input state change whenever the world updates on Users action.
-               The loop ends when the win condition is achieved.In every 100 ms the Platform updates the
-               Board. */
-            new Thread(() -> {
-                while (true) {
-                    try {
-                        currentPlayer = players[i];
-                        if( currentPlayer.statusCheck()){
-
-                            if(currentPlayer == players[numPlayers - 1]){
-                                i = 0;
-                            }else {
-                                i++;
-                            }
-                            currentPlayer = players[i];
-                            state = 1;
-                        }
-                        if (state == 0) {
-                            if (currentPlayer == players[numPlayers - 1] && currentPlayer.getUnsedTroops() == 0) {
-                                i = 0;
-                                state = 1;
-                                currentPlayer = players[i];
-                            } else if (currentPlayer.getUnsedTroops() == 0 && currentPlayer != players[numPlayers - 1]) {
-                                i++;
-                            }
-                        }
-                        if (state == 1) {
-                            currentPlayer.setWonCard(false);
-                            world.updateUnsedTroops(currentPlayer);
-                            if(currentPlayer.cards.fullHandCheck()){
-                                System.out.println("Full Hand");
-                                state = 6;
-                                flag = true;
-                            }else {
-                                state = 2;
-                            }
-                        }
-                        if (state == 2) {
-                            if (currentPlayer.getUnsedTroops() == 0) {
-                                state = 3;
-                            }
-                        }
-                        if (state == 5) {
-                            currentPlayer.cards.winCard(currentPlayer.isWonCard()); /// <----
-                            state = 1;
-                            if (currentPlayer == players[numPlayers - 1]) {
-                                i = 0;
-                            } else {
-                                i++;
-                            }
-                        }
-                        if(state == 6  && !flag){
-                            state = 2;
-                        }
-                        // imitating work
-                        Thread.sleep(100);
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                    }
-
-                    // update Board Map on FX thread
-                    Platform.runLater(() -> {
-
-                        if (state == 0) {
-                            placeTroops(boardController);
-                        }
-                        if( state == 6 && flag){
-                            fullHand(currentPlayer,boardController, true);
-                        }
-                        if (state == 1 || state == 2) {
-                            upkeep(boardController);
-                        }
-                        if (state == 3) {
-                            attackPhase(boardController);
-                        }
-                        if (state == 4) {
-                            endTurn(boardController);
-                        }
-                        boardController.init(GameLogic.this, i, scene);
-                    });
-                }
-            }).start();
+            start();
             stage.centerOnScreen();
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
-    public Country fortify(String buttonText,Player player,World world){
-        Country country = world.findCountry(buttonText);
-        if (player.countriesOwned.contains(country) && player.getUnsedTroops() != 0) {
-            world.fortify(country,1);
-            System.out.println("Country: " + country + ", Troops: " + country.getNumTroops());
+
+    //Starts the Thread for the game loop
+    private void start(){
+        /* This Thread calculate's the current state of the current player.
+           The input state change whenever the world updates on Users action.
+           The loop ends when the win condition is achieved.In every 5 ms the Platform updates the
+           Board. */
+        new Thread(() -> {
+            while (true) {
+                try {
+                    gameState();
+                    // imitating work
+                    Thread.sleep(5);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+                // update Board Map on FX thread
+                Platform.runLater(() -> drawMap(state));
+            }
+        }).start();
+    }
+
+    //Update map
+    private void drawMap(int state){
+        //Initial State
+        if (state == 0) {
+            boardController.placeTroops();
         }
-        return  country;
+        //FullHand State
+        if( state == 6 && flag){
+            boardController.fullHand(this);
+        }
+        //Upkeep State
+        if (state == 1 || state == 2) {
+            boardController.upkeep();
+        }
+        //Attack State
+        if (state == 3) {
+            boardController.attackPhase();
+        }
+        //EndTurn State
+        if (state == 4) {
+            boardController.endTurn();
+        }
+        boardController.init(this);
     }
 
-
-
-    public void placeTroops(BoardController boardController) {
-        boardController.upkeepLabel.setStyle("-fx-text-fill: #777d78");
-        boardController.attackButton.setDisable(true);
-        boardController.skipButton.setDisable(true);
-        boardController.tradeButton.setDisable(true);
-    }
-
-    public void fullHand(Player player, BoardController boardController,boolean flag){
-        //If fullHandCheck = true display TradeCards window
-        if (flag) {
-            Parent root;
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/TradeCards.fxml"));
-                //root = FXMLLoader.load(getClass().getResource("FXML/TradeCards.fxml"));
-                root = fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setTitle("RISK");
-                stage.setScene(new Scene(root, 300, 370));
-                stage.setResizable(false);
-                //stage.initStyle(StageStyle.UNDECORATED);
-                stage.centerOnScreen();
-                stage.alwaysOnTopProperty();
-                stage.show();
-                TradeCardsController tradeCardsController = fxmlLoader.getController();
-                tradeCardsController.init(player,boardController,world);
-                tradeCardsController.closeButton.setDisable(true);
-            } catch (IOException e) {
-                e.printStackTrace();
+    //Calculate the current state of the game and the current player
+    private  void gameState(){
+        currentPlayer = world.getPlayer(turn);
+        if( currentPlayer.statusCheck()){
+            if(currentPlayer == world.getPlayer(world.getPlayers().length-1)){
+                turn = 0;
+            }else {
+                turn++;
+            }
+            currentPlayer = world.getPlayer(turn);
+            state = 1;
+        }
+        if (state == 0) {
+            if (currentPlayer == world.getPlayer(world.getPlayers().length-1) && currentPlayer.getUnsedTroops() == 0) {
+                turn = 0;
+                state = 1;
+                currentPlayer = world.getPlayer(turn);
+            } else if (currentPlayer.getUnsedTroops() == 0 && currentPlayer != world.getPlayer(world.getPlayers().length-1)) {
+                turn++;
             }
         }
-        this.flag = false;
-    }
-    public void upkeep(BoardController boardController) {
-        //Turn on the UPKEEP indicator
-        boardController.upkeepLabel.setStyle("-fx-text-fill: #0fea88");
-        //Turn off the FORTIFY indicator
-        boardController.fortifyLabel.setStyle("-fx-text-fill: #777d78");
-        boardController.attackButton.setDisable(true);
-        boardController.skipButton.setDisable(true);
-        boardController.tradeButton.setDisable(true);
-    }
-
-    public void attackPhase(BoardController boardController) {
-        //Turn off the UPKEEP indicator
-        boardController.upkeepLabel.setStyle("-fx-text-fill: #777d78");
-        //Turn off the FORTIFY indicator
-        boardController.fortifyLabel.setStyle("-fx-text-fill: #777d78");
-        boardController.skipButton.setDisable(false);
-        boardController.tradeButton.setDisable(true);
-    }
-
-    public void endTurn(BoardController boardController) {
-        //Turn off the UPKEEP indicator
-        boardController.upkeepLabel.setStyle("-fx-text-fill: #777d78");
-        //Turn on the FORTIFY indicator
-        boardController.fortifyLabel.setStyle("-fx-text-fill: #0fea88");
-        boardController.skipButton.setDisable(false);
-        boardController.tradeButton.setDisable(false);
-        boardController.attackButton.setDisable(true);
-        //Check if the player won a battle in attack phase,if true add a random card
+        if (state == 1) {
+            currentPlayer.setWonCard(false);
+            world.updateUnsedTroops(currentPlayer);
+            if(currentPlayer.getCards().fullHandCheck()){
+                state = 6;
+                flag = true;
+            }else {
+                state = 2;
+            }
+        }
+        if (state == 2) {
+            if (currentPlayer.getUnsedTroops() == 0) {
+                state = 3;
+            }
+        }
+        if (state == 5) {
+            currentPlayer.getCards().winCard(currentPlayer.isWonCard()); /// <----
+            state = 1;
+            if (currentPlayer == world.getPlayer(world.getPlayers().length-1)) {
+                turn = 0;
+            } else {
+                turn++;
+            }
+        }
+        if(state == 6  && !flag){
+            state = 2;
+        }
     }
 
-    public Player getPlayer(int i) {
-        return players[i];
+
+                  /*Setters & Getters*/
+
+    public World getWorld() { return world; }
+
+    public void setFlag(boolean flag) { this.flag = flag; }
+
+    public int getState() { return state; }
+
+    public  void setState(int state) { this.state = state; }
+
+    public BoardController getBoardController() { return boardController; }
+
+    public Scene getScene() { return scene; }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
     }
 
-    public int getState() {
-        return state;
-    }
-
-    public  void setState(int state) {
-        this.state = state;
+    public boolean isFlag() {
+        return flag;
     }
 
 }

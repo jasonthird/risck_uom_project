@@ -12,19 +12,16 @@ public class StartMenuController {
     @FXML
     private ToggleGroup NumPlayers;
 
-
     @FXML
-    private void startGameButton() throws IOException {
-
+    private void startGameButton() {
         ToggleButton selectedButton = (ToggleButton) NumPlayers.getSelectedToggle();
         if(selectedButton != null) {
             App.startGame(Integer.parseInt(selectedButton.getText()));
         }
-
     }
 
     @FXML
-    private void ExitButton() throws IOException{
+    private void ExitButton() {
         Platform.exit();
     }
 

@@ -4,9 +4,9 @@ import java.util.*;
 
 public class World{
 
-    public Player[] players;
-    public Country[] countries;
-    public int numOfTrades ;
+    private final Player[] players;
+    private final Country[] countries;
+    private int numOfTrades;
 
 
     public World(int numPlayers) {
@@ -42,8 +42,8 @@ public class World{
         for (int i = 0; i < numPlayers; i++) {
             players[i] = new Player();
             players[i].setId(i);
-
             players[i].setUnsedTroops(unsedTroops);
+
             switch (i){
                 case 0:
                     playerColor = "#1057c9";
@@ -68,55 +68,55 @@ public class World{
             }
             players[i].setColor(playerColor);
         }
-
+        Collections.shuffle(Arrays.asList(players));
         return players;
     }
 
     //Create a list of countries and all the 42 countries
     public   Country[] initializeCountries(){
         Country[] countries = new Country[42];
-        countries[0] = new Country("Alaska",0);
-        countries[1] = new Country("Alberta",1 );
-        countries[2] = new Country("CentralAmerica",2);
-        countries[3] = new Country("EastUS",3);
-        countries[4] = new Country("Greenland",4);
-        countries[5] = new Country("NorthTerritory",5);
-        countries[6] = new Country("Ontario",6);
-        countries[7] = new Country("Quebec",7);
-        countries[8] = new Country("WestUS",8);
-        countries[9] = new Country("Venezuela",9);
-        countries[10] = new Country("Brazil",10);
-        countries[11] = new Country("Peru",11);
-        countries[12] = new Country("Argentina",12);
-        countries[13] = new Country("Britain",13);
-        countries[14] = new Country("Iceland",14);
-        countries[15] = new Country("NorthEurope",15);
-        countries[16] = new Country("Scandinavia",16);
-        countries[17] = new Country("Ukraine",17);
-        countries[18] = new Country("SouthEurope",18);
-        countries[19] = new Country("WestEurope",19);
-        countries[20] = new Country("Madagascar",20);
-        countries[21] = new Country("Egypt",21);
-        countries[22] = new Country("NorthAfrica",22);
-        countries[23] = new Country("EastAfrica",23);
-        countries[24] = new Country("Congo",24);
-        countries[25] = new Country("SouthAfrica",25);
-        countries[26] = new Country("MiddleEast",26);
-        countries[27] = new Country("Kazakhstan",27);
-        countries[28] = new Country("Ural",28);
-        countries[29] = new Country("India",29);
-        countries[30] = new Country("China",30);
-        countries[31] = new Country("Siberia",31);
-        countries[32] = new Country("Siam",32);
-        countries[33] = new Country("Mongolia",33);
-        countries[34] = new Country("Irkutsk",34);
-        countries[35] = new Country("Yakutsk",35);
-        countries[36] = new Country("Kamchatka",36);
-        countries[37] = new Country("Japan",37);
-        countries[38] = new Country("Indonesia",38);
-        countries[39] = new Country("WestAustralia",39);
-        countries[40] = new Country("EastAustralia",40);
-        countries[41] = new Country("NewGuinea",41);
+        countries[0] = new Country("Alaska");
+        countries[1] = new Country("Alberta");
+        countries[2] = new Country("CentralAmerica");
+        countries[3] = new Country("EastUS");
+        countries[4] = new Country("Greenland");
+        countries[5] = new Country("NorthTerritory");
+        countries[6] = new Country("Ontario");
+        countries[7] = new Country("Quebec");
+        countries[8] = new Country("WestUS");
+        countries[9] = new Country("Venezuela");
+        countries[10] = new Country("Brazil");
+        countries[11] = new Country("Peru");
+        countries[12] = new Country("Argentina");
+        countries[13] = new Country("Britain");
+        countries[14] = new Country("Iceland");
+        countries[15] = new Country("NorthEurope");
+        countries[16] = new Country("Scandinavia");
+        countries[17] = new Country("Ukraine");
+        countries[18] = new Country("SouthEurope");
+        countries[19] = new Country("WestEurope");
+        countries[20] = new Country("Madagascar");
+        countries[21] = new Country("Egypt");
+        countries[22] = new Country("NorthAfrica");
+        countries[23] = new Country("EastAfrica");
+        countries[24] = new Country("Congo");
+        countries[25] = new Country("SouthAfrica");
+        countries[26] = new Country("MiddleEast");
+        countries[27] = new Country("Kazakhstan");
+        countries[28] = new Country("Ural");
+        countries[29] = new Country("India");
+        countries[30] = new Country("China");
+        countries[31] = new Country("Siberia");
+        countries[32] = new Country("Siam");
+        countries[33] = new Country("Mongolia");
+        countries[34] = new Country("Irkutsk");
+        countries[35] = new Country("Yakutsk");
+        countries[36] = new Country("Kamchatka");
+        countries[37] = new Country("Japan");
+        countries[38] = new Country("Indonesia");
+        countries[39] = new Country("WestAustralia");
+        countries[40] = new Country("EastAustralia");
+        countries[41] = new Country("NewGuinea");
 
         //Alaska
         countries[0].adjacentCountries = new LinkedList<>();
@@ -408,15 +408,9 @@ public class World{
         countries[41].adjacentCountries.add(countries[39]);
         countries[41].adjacentCountries.add(countries[40]);
 
-        for (Country country : countries) {
-            for (Country c : country.adjacentCountries) {
-
-                System.out.println(c.toString() + "  :  " + c.getAdjacentCountries());
-            }
-        }
-
         return  countries;
     }
+
     public  boolean findPath(Country country,Country country2){
         for(Country c: country.getAdjacentCountries()){
             if(c.getOwner() == country.getOwner()) {
@@ -452,9 +446,13 @@ public class World{
     }
 
     //fortify one country only
-    public void fortify(Country country, int numOfTroops){
-        country.setNumTroops(numOfTroops);
-        country.getOwner().removeTroops(numOfTroops);
+    public Country fortify(String buttonText,Player player){
+        Country country = findCountry(buttonText);
+        if (player.countriesOwned.contains(country) && player.getUnsedTroops() != 0) {
+            country.setNumTroops(1);
+            country.getOwner().removeTroops(1);
+        }
+        return  country;
     }
 
     //move a number of troops from a country to country2
@@ -505,6 +503,7 @@ public class World{
         return attackResult(own,enemy);
     }
 
+    //Match the string input with a country
     public Country findCountry(String country){
         for (Country c : countries) {
             if (country.equals(c.toString())) {
@@ -523,12 +522,12 @@ public class World{
 
     //Calculate the attack result
     public boolean attackResult(Country own, Country enemy){
-        if(enemy.numTroops <= 0) {
+        if(enemy.getNumTroops() <= 0) {
             if(!own.getOwner().isWonCard()){
                 own.getOwner().setWonCard(true);
             }
             if(enemy.getOwner().isDead()){
-                own.getOwner().cards.winnerTakesCards(enemy.getOwner().cards);
+                own.getOwner().getCards().winnerTakesCards(enemy.getOwner().getCards());
             }
             enemy.setNum(1);
             own.setNum(own.getNumTroops()-1);
@@ -538,6 +537,41 @@ public class World{
             return true;
         }
         return false;
+    }
+
+    //Remove the selected amount of cards from players hand to redeem them
+    public int redeemCards(int t, int c, int a, Player player) {
+        int[] rCards = new int[3];
+        rCards[0] = t;
+        rCards[1] = c;
+        rCards[2] = a;
+        int total = 0;
+        //trade cards one of each type,check if the player has that amount of cards
+        if ((rCards[0] == rCards[1]) && (rCards[0] == rCards[2]) && (rCards[0] > 0)) {
+            if ((player.getCards().getCards()[0] >= rCards[0]) && (player.getCards().getCards()[1] >= rCards[0]) && (player.getCards().getCards()[2] >= rCards[0])) {
+                player.getCards().getCards()[0] -= rCards[0];
+                player.getCards().getCards()[1] -= rCards[1];
+                player.getCards().getCards()[2] -= rCards[2];
+                for (int i = 0; i < rCards[0]; i++) {
+                    total += numOfTrades;
+                    numOfTrades += 2;
+                }
+                return total;
+            }
+        }
+        //trade 3 cards of the same type,check if the player has that amount of cards
+        for (int i = 0; i < 3; i++) {
+            if ( (rCards[i] != 0) && (rCards[i] % 3) == 0 && (player.getCards().getCards()[i] >= 3)  ){
+                player.getCards().getCards()[i] -= rCards[i];
+                total += (numOfTrades * (rCards[i] / 3) );
+                numOfTrades += 2 * (rCards[i] / 3);
+            }
+            if( i == 2 ){ return total; }
+        }
+        if((rCards[0] == rCards[1] ) && (rCards[0] == rCards[2]) && (rCards[0] ==0) ){
+            return 0;
+        }
+        return  total;
     }
 
     //check win condition
@@ -552,16 +586,16 @@ public class World{
     }
 
     //Simulates the die roll.Returns a number 1-6.
-    public static int roll(){
-        return (int) Math.ceil(6 * Math.random());
-    }
+    public static int roll(){ return (int) Math.ceil(6 * Math.random()); }
+
+
+
+                       /*Setters & Getters*/
 
     public int getNumOfTrades() { return numOfTrades; }
 
-    public Player[] getPlayers() { return players; }
+    public Player getPlayer(int i) { return players[i]; }
 
-    public void setNumOfTrades(int numOfTrades) {
-        this.numOfTrades = numOfTrades;
-    }
+    public Player[] getPlayers() { return players; }
 
 }

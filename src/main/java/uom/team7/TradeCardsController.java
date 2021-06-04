@@ -7,50 +7,43 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 
 public class TradeCardsController {
-    private Player player;
-    @FXML
-    public Button closeButton;
-    @FXML
-    public Label troopLabel, cavalryLabel, artilleryLabel, totalLabel;
-    @FXML
-    public Spinner<Integer> troopSpinner, cavalrySpinner, artillerySpinner;
-    private BoardController board;
-    private World world;
-
 
     @FXML
-    public void BackButton() throws IOException {
+    private Button closeButton;
+    @FXML
+    private Label troopLabel, cavalryLabel, artilleryLabel, totalLabel;
+    @FXML
+    private Spinner<Integer> troopSpinner, cavalrySpinner, artillerySpinner;
+    private GameLogic game;
+
+    @FXML
+    public void BackButton() {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
-        board.tradeButton.setDisable(false);
+        game.getBoardController().getTradeButton().setDisable(false);
     }
 
     @FXML
-    public void TradeButton() throws IOException {
-        int numOfTrades = player.cards.redeemCards(troopSpinner.getValue(), cavalrySpinner.getValue(), artillerySpinner.getValue(), world);
-
+    public void TradeButton() {
+        int numOfTrades = game.getWorld().redeemCards(troopSpinner.getValue(), cavalrySpinner.getValue(), artillerySpinner.getValue(), game.getCurrentPlayer());
         if(numOfTrades != 0) {
-            System.out.println("Trades:" + numOfTrades);
-            player.setUnsedTroops(numOfTrades);
+            game.getCurrentPlayer().setUnsedTroops(numOfTrades);
         }
-        init(player,board,world);
+        init(game);
     }
 
     //Initialize the values of scene's components
-    public void init(Player player,BoardController boardController,World world) {
-        this.board = boardController;
-        this.world = world;
-        this.player = player;
+    public void init(GameLogic gameLogic) {
+        this.game = gameLogic;
         //Spinner Initialize
-        if(!player.cards.fullHandCheck()){
+        if(!game.getCurrentPlayer().getCards().fullHandCheck()){
             closeButton.setDisable(false);
         }
-        SpinnerValueFactory<Integer> troopValue = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, player.cards.getCards()[0], 0);
-        SpinnerValueFactory<Integer> cavalryValue = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, player.cards.getCards()[1], 0);
-        SpinnerValueFactory<Integer> artilleryValue = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, player.cards.getCards()[2], 0);
+        SpinnerValueFactory<Integer> troopValue = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, game.getCurrentPlayer().getCards().getCards()[0], 0);
+        SpinnerValueFactory<Integer> cavalryValue = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, game.getCurrentPlayer().getCards().getCards()[1], 0);
+        SpinnerValueFactory<Integer> artilleryValue = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, game.getCurrentPlayer().getCards().getCards()[2], 0);
         troopSpinner.setValueFactory(troopValue);
         cavalrySpinner.setValueFactory(cavalryValue);
         artillerySpinner.setValueFactory(artilleryValue);
@@ -62,15 +55,15 @@ public class TradeCardsController {
         artilleryValue.valueProperty().addListener(e -> updateTotal(troopValue.getValue(), cavalryValue.getValue(), artilleryValue.getValue()));
 
         //Labels Initialize
-        troopLabel.setText("x " + player.cards.getCards()[0]);
-        cavalryLabel.setText("x " + player.cards.getCards()[1]);
-        artilleryLabel.setText("x " + player.cards.getCards()[2]);
+        troopLabel.setText("x " + game.getCurrentPlayer().getCards().getCards()[0]);
+        cavalryLabel.setText("x " + game.getCurrentPlayer().getCards().getCards()[1]);
+        artilleryLabel.setText("x " + game.getCurrentPlayer().getCards().getCards()[2]);
 
     }
 
     //Calculations for total
     public void updateTotal(int t, int c, int a) {
-        int total = 0,n = world.numOfTrades; // temp variables to calculate the total IRT
+        int total = 0,n = game.getWorld().getNumOfTrades(); // temp variables to calculate the total IRT
         int[] value = new int[3];
         boolean flag = false;
         value[0] = t;
@@ -94,10 +87,13 @@ public class TradeCardsController {
                     total += (n * (value[i] / 3) );
                     n += (2 * (value[i] / 3)) ;
                 }
-                if ( total >= world.numOfTrades ) {
+                if ( total >= game.getWorld().getNumOfTrades() ) {
                     totalLabel.setText(String.valueOf(total));
                 } else { totalLabel.setText(""); }
             }
         }
     }
+
+    public Button getCloseButton() { return closeButton; }
+
 }

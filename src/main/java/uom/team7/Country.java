@@ -2,21 +2,17 @@ package uom.team7;
 
 import java.util.*;
 
-public class Country implements Comparable<Country>{
+public class Country{
 
     private final String name;
-    int numTroops,id;
+    private int numTroops;
     private Player owner;
     LinkedList<Country> adjacentCountries;
 
-    public int getId() {
-        return id;
-    }
 
-    public Country (String name, int id) {
+    public Country (String name) {
         this.name = name;
         numTroops = 1;
-        this.id = id;
     }
 
     //Remove numTroops from the currently country after 1.fortify or 2.attack result
@@ -25,6 +21,7 @@ public class Country implements Comparable<Country>{
     }
 
                                   /*Setters & Getters*/
+
     public int getNumTroops() {
         return numTroops;
     }
@@ -51,8 +48,4 @@ public class Country implements Comparable<Country>{
         return  this.name ;
     }
 
-    @Override
-    public int compareTo(Country o) {
-        return 0;
-    }
 }
