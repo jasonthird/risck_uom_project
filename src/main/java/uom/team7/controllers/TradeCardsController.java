@@ -21,7 +21,7 @@ public class TradeCardsController {
 
     //Close the window
     @FXML
-    public void BackButton() {
+    public void backButton() {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
         game.getBoardController().getTradeButton().setDisable(false);
@@ -29,7 +29,7 @@ public class TradeCardsController {
 
     //updates player's cards and the window
     @FXML
-    public void TradeButton() {
+    public void tradeButton() {
         int numOfTrades = game.getWorld().redeemCards(troopSpinner.getValue(), cavalrySpinner.getValue(), artillerySpinner.getValue(), game.getCurrentPlayer());
         if(numOfTrades != 0) {
             game.getCurrentPlayer().setUnsedTroops(numOfTrades);
@@ -68,7 +68,7 @@ public class TradeCardsController {
 
     //Calculations for total
     public void updateTotal(int t, int c, int a) {
-        int total = 0,n = game.getWorld().getNumOfTrades(); // temp variables to calculate the total IRT
+        int total = 0, n = game.getWorld().getNumOfTrades(); // temp variables to calculate the total IRT
         int[] value = new int[3];
         boolean flag = false;
         value[0] = t;

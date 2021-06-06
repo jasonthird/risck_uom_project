@@ -10,25 +10,25 @@ import uom.team7.App;
 public class StartMenuController {
 
     @FXML
-    private ToggleGroup NumPlayers;
+    private ToggleGroup numPlayers;
 
     @FXML
-    private void startGameButton() {
-        ToggleButton selectedButton = (ToggleButton) NumPlayers.getSelectedToggle();
+    private void startGameButton() throws IOException {
+        ToggleButton selectedButton = (ToggleButton) numPlayers.getSelectedToggle();
         if(selectedButton != null) {
             App.startGame(Integer.parseInt(selectedButton.getText()));
         }
     }
 
     @FXML
-    private void ExitButton() {
+    private void exitButton() {
         Platform.exit();
     }
 
     @FXML
-    private void HowToPLayButton() throws IOException{
-        String url_open ="https://docs.google.com/document/d/1acLcNAga5Q8TIbLqt7DTHUS2DIkE6y_vnBmF61aNWYc/edit?usp=sharing";
-        java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
+    private void howToPLayButton() throws IOException{
+        String url ="https://docs.google.com/document/d/1acLcNAga5Q8TIbLqt7DTHUS2DIkE6y_vnBmF61aNWYc/edit?usp=sharing";
+        java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
     }
 
 }

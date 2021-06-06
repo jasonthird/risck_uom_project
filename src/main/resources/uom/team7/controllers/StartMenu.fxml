@@ -12,32 +12,32 @@
          <children>
             <ToggleButton mnemonicParsing="false" styleClass="RoundButton" stylesheets="@../GuiStyle.css" text="2">
                <toggleGroup>
-                  <ToggleGroup fx:id="NumPlayers" />
+                  <ToggleGroup fx:id="numPlayers" />
                </toggleGroup>
                <font>
                   <Font name="Cambria" size="18.0" />
                </font>
             </ToggleButton>
-            <ToggleButton mnemonicParsing="false" styleClass="RoundButton" stylesheets="@../GuiStyle.css" text="3" toggleGroup="$NumPlayers" />
-            <ToggleButton mnemonicParsing="false" styleClass="RoundButton" stylesheets="@../GuiStyle.css" text="4" toggleGroup="$NumPlayers" />
-            <ToggleButton mnemonicParsing="false" styleClass="RoundButton" stylesheets="@../GuiStyle.css" text="5" toggleGroup="$NumPlayers" />
-            <ToggleButton mnemonicParsing="false" styleClass="RoundButton" stylesheets="@../GuiStyle.css" text="6" toggleGroup="$NumPlayers" HBox.hgrow="ALWAYS" />
+            <ToggleButton mnemonicParsing="false" styleClass="RoundButton" stylesheets="@../GuiStyle.css" text="3" toggleGroup="$numPlayers" />
+            <ToggleButton mnemonicParsing="false" styleClass="RoundButton" stylesheets="@../GuiStyle.css" text="4" toggleGroup="$numPlayers" />
+            <ToggleButton mnemonicParsing="false" styleClass="RoundButton" stylesheets="@../GuiStyle.css" text="5" toggleGroup="$numPlayers" />
+            <ToggleButton mnemonicParsing="false" styleClass="RoundButton" stylesheets="@../GuiStyle.css" text="6" toggleGroup="$numPlayers" HBox.hgrow="ALWAYS" />
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </HBox>
-      <Button fx:id="startGameB" alignment="CENTER" layoutX="281.0" layoutY="400.0" lineSpacing="20.0" mnemonicParsing="false" onMouseClicked="#startGameButton" prefHeight="65.0" prefWidth="238.0" style="-fx-background-radius: 5em; -fx-background-color: #17bd46;" text=" START GAME">
+      <Button fx:id="startGame" alignment="CENTER" layoutX="281.0" layoutY="400.0" lineSpacing="20.0" mnemonicParsing="false" onMouseClicked="#startGameButton" prefHeight="65.0" prefWidth="238.0" style="-fx-background-radius: 5em; -fx-background-color: #17bd46;" text=" START GAME">
          <font>
             <Font name="Cambria Bold" size="30.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" layoutX="579.0" layoutY="535.0" lineSpacing="20.0" mnemonicParsing="false" onMouseClicked="#HowToPLayButton" prefHeight="30.0" prefWidth="187.0" style="-fx-background-radius: 5em; -fx-background-color: #777d78;" text="HOW TO PLAY" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="34.0">
+      <Button alignment="CENTER" layoutX="579.0" layoutY="535.0" lineSpacing="20.0" mnemonicParsing="false" onMouseClicked="#howToPLayButton" prefHeight="30.0" prefWidth="187.0" style="-fx-background-radius: 5em; -fx-background-color: #777d78;" text="HOW TO PLAY" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="34.0">
          <font>
             <Font name="Cambria Bold" size="22.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="534.0" mnemonicParsing="false" onMouseClicked="#ExitButton" prefHeight="30.0" prefWidth="187.0" style="-fx-background-radius: 5em; -fx-background-color: #bd1111;" text="EXIT GAME" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="34.0">
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="534.0" mnemonicParsing="false" onMouseClicked="#exitButton" prefHeight="30.0" prefWidth="187.0" style="-fx-background-radius: 5em; -fx-background-color: #bd1111;" text="EXIT GAME" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="34.0">
          <font>
             <Font name="Cambria Bold" size="22.0" />
          </font>

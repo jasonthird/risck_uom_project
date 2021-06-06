@@ -4,22 +4,22 @@ import java.util.*;
 
 public class World{
 
-    private final Player[] players;
-    private final Country[] countries;
+    private Player[] players;
+    private Country[] countries;
     private int numOfTrades;
 
 
     public World(int numPlayers) {
         numOfTrades = 6;
-        players = initializePlayers(numPlayers);
-        countries = initializeCountries();
+        initializePlayers(numPlayers);
+        initializeCountries();
         initializeCountryOwners(countries, players, numPlayers);
     }
 
     //create the players and initialize the unsedTroops
-    public  Player[] initializePlayers(int numPlayers) {
+    public void initializePlayers(int numPlayers) {
         int unsedTroops;
-        Player[] players = new Player[numPlayers];
+        players = new Player[numPlayers];
         switch (numPlayers) {
             case 2:
                 unsedTroops = 5;
@@ -43,7 +43,6 @@ public class World{
             players[i] = new Player();
             players[i].setId(i);
             players[i].setUnsedTroops(unsedTroops);
-
             switch (i){
                 case 0:
                     playerColor = "#1057c9";
@@ -69,12 +68,11 @@ public class World{
             players[i].setColor(playerColor);
         }
         Collections.shuffle(Arrays.asList(players));
-        return players;
     }
 
     //Create a list of countries and all the 42 countries
-    public   Country[] initializeCountries(){
-        Country[] countries = new Country[42];
+    public void initializeCountries(){
+        countries = new Country[42];
         countries[0] = new Country("Alaska");
         countries[1] = new Country("Alberta");
         countries[2] = new Country("CentralAmerica");
@@ -129,34 +127,29 @@ public class World{
         countries[1].adjacentCountries.add(countries[5]);
         countries[1].adjacentCountries.add(countries[6]);
         countries[1].adjacentCountries.add(countries[8]);
-
         //CentralAmerica
         countries[2].adjacentCountries = new LinkedList<>();
         countries[2].adjacentCountries.add(countries[3]);
         countries[2].adjacentCountries.add(countries[8]);
         countries[2].adjacentCountries.add(countries[9]);
-
         //EastUS
         countries[3].adjacentCountries = new LinkedList<>();
         countries[3].adjacentCountries.add(countries[2]);
         countries[3].adjacentCountries.add(countries[6]);
         countries[3].adjacentCountries.add(countries[7]);
         countries[3].adjacentCountries.add(countries[8]);
-
         //Greenland
         countries[4].adjacentCountries = new LinkedList<>();
         countries[4].adjacentCountries.add(countries[5]);
         countries[4].adjacentCountries.add(countries[6]);
         countries[4].adjacentCountries.add(countries[7]);
         countries[4].adjacentCountries.add(countries[14]);
-
         //NorthTerritory
         countries[5].adjacentCountries = new LinkedList<>();
         countries[5].adjacentCountries.add(countries[0]);
         countries[5].adjacentCountries.add(countries[1]);
         countries[5].adjacentCountries.add(countries[4]);
         countries[5].adjacentCountries.add(countries[6]);
-
         //Ontario
         countries[6].adjacentCountries = new LinkedList<>();
         countries[6].adjacentCountries.add(countries[1]);
@@ -170,53 +163,43 @@ public class World{
         countries[7].adjacentCountries.add(countries[3]);
         countries[7].adjacentCountries.add(countries[4]);
         countries[7].adjacentCountries.add(countries[6]);
-
         //WestUS
         countries[8].adjacentCountries = new LinkedList<>();
         countries[8].adjacentCountries.add(countries[1]);
         countries[8].adjacentCountries.add(countries[2]);
         countries[8].adjacentCountries.add(countries[3]);
         countries[8].adjacentCountries.add(countries[6]);
-
         //Venezuela
         countries[9].adjacentCountries = new LinkedList<>();
         countries[9].adjacentCountries.add(countries[2]);
         countries[9].adjacentCountries.add(countries[10]);
         countries[9].adjacentCountries.add(countries[11]);
-
-
         //Brazil
         countries[10].adjacentCountries = new LinkedList<>();
         countries[10].adjacentCountries.add(countries[9]);
         countries[10].adjacentCountries.add(countries[11]);
         countries[10].adjacentCountries.add(countries[12]);
         countries[10].adjacentCountries.add(countries[22]);
-
         //Peru
         countries[11].adjacentCountries = new LinkedList<>();
         countries[11].adjacentCountries.add(countries[9]);
         countries[11].adjacentCountries.add(countries[10]);
         countries[11].adjacentCountries.add(countries[12]);
-
-
         //Argentina
         countries[12].adjacentCountries = new LinkedList<>();
         countries[12].adjacentCountries.add(countries[10]);
         countries[12].adjacentCountries.add(countries[11]);
-
         //Britain
         countries[13].adjacentCountries = new LinkedList<>();
         countries[13].adjacentCountries.add(countries[14]);
         countries[13].adjacentCountries.add(countries[15]);
         countries[13].adjacentCountries.add(countries[16]);
         countries[13].adjacentCountries.add(countries[19]);
-
         //Iceland
         countries[14].adjacentCountries = new LinkedList<>();
         countries[14].adjacentCountries.add(countries[4]);
         countries[14].adjacentCountries.add(countries[13]);
         countries[14].adjacentCountries.add(countries[16]);
-
         //NorthEurope
         countries[15].adjacentCountries = new LinkedList<>();
         countries[15].adjacentCountries.add(countries[13]);
@@ -224,14 +207,12 @@ public class World{
         countries[15].adjacentCountries.add(countries[17]);
         countries[15].adjacentCountries.add(countries[18]);
         countries[15].adjacentCountries.add(countries[19]);
-
         //Scandinavia
         countries[16].adjacentCountries = new LinkedList<>();
         countries[16].adjacentCountries.add(countries[13]);
         countries[16].adjacentCountries.add(countries[14]);
         countries[16].adjacentCountries.add(countries[15]);
         countries[16].adjacentCountries.add(countries[17]);
-
         //Ukraine
         countries[17].adjacentCountries = new LinkedList<>();
         countries[17].adjacentCountries.add(countries[15]);
@@ -240,8 +221,6 @@ public class World{
         countries[17].adjacentCountries.add(countries[26]);
         countries[17].adjacentCountries.add(countries[27]);
         countries[17].adjacentCountries.add(countries[28]);
-
-
         //SouthEurope
         countries[18].adjacentCountries = new LinkedList<>();
         countries[18].adjacentCountries.add(countries[15]);
@@ -249,26 +228,22 @@ public class World{
         countries[18].adjacentCountries.add(countries[21]);
         countries[18].adjacentCountries.add(countries[22]);
         countries[18].adjacentCountries.add(countries[26]);
-
         //WestEurope
         countries[19].adjacentCountries = new LinkedList<>();
         countries[19].adjacentCountries.add(countries[13]);
         countries[19].adjacentCountries.add(countries[15]);
         countries[19].adjacentCountries.add(countries[18]);
         countries[19].adjacentCountries.add(countries[22]);
-
         //Madagascar
         countries[20].adjacentCountries = new LinkedList<>();
         countries[20].adjacentCountries.add(countries[23]);
         countries[20].adjacentCountries.add(countries[25]);
-
         //Egypt
         countries[21].adjacentCountries = new LinkedList<>();
         countries[21].adjacentCountries.add(countries[18]);
         countries[21].adjacentCountries.add(countries[22]);
         countries[21].adjacentCountries.add(countries[23]);
         countries[21].adjacentCountries.add(countries[26]);
-
         //NorthAfrica
         countries[22].adjacentCountries = new LinkedList<>();
         countries[22].adjacentCountries.add(countries[10]);
@@ -276,7 +251,6 @@ public class World{
         countries[22].adjacentCountries.add(countries[21]);
         countries[22].adjacentCountries.add(countries[23]);
         countries[22].adjacentCountries.add(countries[24]);
-
         //EastAfrica
         countries[23].adjacentCountries = new LinkedList<>();
         countries[23].adjacentCountries.add(countries[21]);
@@ -285,19 +259,16 @@ public class World{
         countries[23].adjacentCountries.add(countries[24]);
         countries[23].adjacentCountries.add(countries[25]);
         countries[23].adjacentCountries.add(countries[26]);
-
         //Congo
         countries[24].adjacentCountries = new LinkedList<>();
         countries[24].adjacentCountries.add(countries[22]);
         countries[24].adjacentCountries.add(countries[23]);
         countries[24].adjacentCountries.add(countries[25]);
-
         //SouthAfrica
         countries[25].adjacentCountries = new LinkedList<>();
         countries[25].adjacentCountries.add(countries[20]);
         countries[25].adjacentCountries.add(countries[23]);
         countries[25].adjacentCountries.add(countries[24]);
-
         //MiddleEast
         countries[26].adjacentCountries = new LinkedList<>();
         countries[26].adjacentCountries.add(countries[17]);
@@ -306,7 +277,6 @@ public class World{
         countries[26].adjacentCountries.add(countries[23]);
         countries[26].adjacentCountries.add(countries[27]);
         countries[26].adjacentCountries.add(countries[29]);
-
         //Kazakhstan
         countries[27].adjacentCountries = new LinkedList<>();
         countries[27].adjacentCountries.add(countries[17]);
@@ -314,21 +284,18 @@ public class World{
         countries[27].adjacentCountries.add(countries[28]);
         countries[27].adjacentCountries.add(countries[29]);
         countries[27].adjacentCountries.add(countries[30]);
-
         //Ural
         countries[28].adjacentCountries = new LinkedList<>();
         countries[28].adjacentCountries.add(countries[17]);
         countries[28].adjacentCountries.add(countries[27]);
         countries[28].adjacentCountries.add(countries[30]);
         countries[28].adjacentCountries.add(countries[31]);
-
         //India
         countries[29].adjacentCountries = new LinkedList<>();
         countries[29].adjacentCountries.add(countries[26]);
         countries[29].adjacentCountries.add(countries[27]);
         countries[29].adjacentCountries.add(countries[30]);
         countries[29].adjacentCountries.add(countries[32]);
-
         //China
         countries[30].adjacentCountries = new LinkedList<>();
         countries[30].adjacentCountries.add(countries[28]);
@@ -337,7 +304,6 @@ public class World{
         countries[30].adjacentCountries.add(countries[31]);
         countries[30].adjacentCountries.add(countries[32]);
         countries[30].adjacentCountries.add(countries[33]);
-
         //Siberia
         countries[31].adjacentCountries = new LinkedList<>();
         countries[31].adjacentCountries.add(countries[28]);
@@ -345,13 +311,11 @@ public class World{
         countries[31].adjacentCountries.add(countries[33]);
         countries[31].adjacentCountries.add(countries[34]);
         countries[31].adjacentCountries.add(countries[35]);
-
         //Siam
         countries[32].adjacentCountries = new LinkedList<>();
         countries[32].adjacentCountries.add(countries[29]);
         countries[32].adjacentCountries.add(countries[30]);
         countries[32].adjacentCountries.add(countries[38]);
-
         //Mongolia
         countries[33].adjacentCountries = new LinkedList<>();
         countries[33].adjacentCountries.add(countries[30]);
@@ -359,56 +323,46 @@ public class World{
         countries[33].adjacentCountries.add(countries[34]);
         countries[33].adjacentCountries.add(countries[36]);
         countries[33].adjacentCountries.add(countries[37]);
-
         //Irkutsk
         countries[34].adjacentCountries = new LinkedList<>();
         countries[34].adjacentCountries.add(countries[31]);
         countries[34].adjacentCountries.add(countries[33]);
         countries[34].adjacentCountries.add(countries[35]);
         countries[34].adjacentCountries.add(countries[36]);
-
         //Yakutsk
         countries[35].adjacentCountries = new LinkedList<>();
         countries[35].adjacentCountries.add(countries[31]);
         countries[35].adjacentCountries.add(countries[34]);
         countries[35].adjacentCountries.add(countries[36]);
-
         //Kamchatka
         countries[36].adjacentCountries = new LinkedList<>();
         countries[36].adjacentCountries.add(countries[0]);
         countries[36].adjacentCountries.add(countries[34]);
         countries[36].adjacentCountries.add(countries[35]);
         countries[36].adjacentCountries.add(countries[37]);
-
         //Japan
         countries[37].adjacentCountries = new LinkedList<>();
         countries[37].adjacentCountries.add(countries[33]);
         countries[37].adjacentCountries.add(countries[36]);
-
         //Indonesia
         countries[38].adjacentCountries = new LinkedList<>();
         countries[38].adjacentCountries.add(countries[32]);
         countries[38].adjacentCountries.add(countries[39]);
         countries[38].adjacentCountries.add(countries[41]);
-
         //WestAustralia
         countries[39].adjacentCountries = new LinkedList<>();
         countries[39].adjacentCountries.add(countries[38]);
         countries[39].adjacentCountries.add(countries[40]);
         countries[39].adjacentCountries.add(countries[41]);
-
         //EastAustralia
         countries[40].adjacentCountries = new LinkedList<>();
         countries[40].adjacentCountries.add(countries[39]);
         countries[40].adjacentCountries.add(countries[41]);
-
         //NewGuinea
         countries[41].adjacentCountries = new LinkedList<>();
         countries[41].adjacentCountries.add(countries[38]);
         countries[41].adjacentCountries.add(countries[39]);
         countries[41].adjacentCountries.add(countries[40]);
-
-        return  countries;
     }
 
     public  boolean findPath(Country country,Country country2){
@@ -416,10 +370,7 @@ public class World{
             if(c.getOwner() == country.getOwner()) {
                 if (c.getAdjacentCountries().contains(country2)){ return  true;}
                 for (Country c1 : c.getAdjacentCountries()) {
-                    if (c1.getAdjacentCountries().contains(country2) && c1.getOwner() == country.getOwner()) {
-                        return true;
-                    }
-                    if(c1.equals(country2)) {
+                    if (c1.getAdjacentCountries().contains(country2) && c1.getOwner() == country.getOwner() || c1.equals(country2)) {
                         return true;
                     }
                 }
@@ -488,17 +439,11 @@ public class World{
 
 
         for(int i = 0; i < 2; i++) {
-            if (attacker[i].equals(defender[i])) {
-                System.out.println("Player: " + own.getOwner().getId() + " loose");
+            if (defender[i] >= attacker[i]) {
                 own.removeNumTroops(1);
             } else if (attacker[i] > defender[i]) {
-                System.out.println("Player: " + own.getOwner().getId() +" win");
                 enemy.removeNumTroops(1);
-            } else {
-                System.out.println("Player: " + own.getOwner().getId() +" loose");
-                own.removeNumTroops(1);
             }
-
         }
         return attackResult(own,enemy);
     }
@@ -547,17 +492,19 @@ public class World{
         rCards[2] = a;
         int total = 0;
         //trade cards one of each type,check if the player has that amount of cards
-        if ((rCards[0] == rCards[1]) && (rCards[0] == rCards[2]) && (rCards[0] > 0)) {
-            if ((player.getCards().getCards()[0] >= rCards[0]) && (player.getCards().getCards()[1] >= rCards[0]) && (player.getCards().getCards()[2] >= rCards[0])) {
-                player.getCards().getCards()[0] -= rCards[0];
-                player.getCards().getCards()[1] -= rCards[1];
-                player.getCards().getCards()[2] -= rCards[2];
-                for (int i = 0; i < rCards[0]; i++) {
-                    total += numOfTrades;
-                    numOfTrades += 2;
-                }
-                return total;
+
+        if (    (rCards[0] == rCards[1]) && (rCards[0] == rCards[2]) &&
+                (rCards[0] > 0) && (player.getCards().getCards()[0] >= rCards[0]) &&
+                (player.getCards().getCards()[1] >= rCards[0]) && (player.getCards().getCards()[2] >= rCards[0])) {
+            player.getCards().getCards()[0] -= rCards[0];
+            player.getCards().getCards()[1] -= rCards[1];
+            player.getCards().getCards()[2] -= rCards[2];
+            for (int i = 0; i < rCards[0]; i++) {
+                total += numOfTrades;
+                numOfTrades += 2;
             }
+            return total;
+
         }
         //trade 3 cards of the same type,check if the player has that amount of cards
         for (int i = 0; i < 3; i++) {
@@ -586,11 +533,14 @@ public class World{
     }
 
     //Simulates the die roll.Returns a number 1-6.
-    public static int roll(){ return (int) Math.ceil(6 * Math.random()); }
+    public static int roll(){
+        Random r = new Random();
+        return  ( r.nextInt(6));
+    }
 
 
 
-                       /*Setters & Getters*/
+    /*Setters & Getters*/
 
     public int getNumOfTrades() { return numOfTrades; }
 

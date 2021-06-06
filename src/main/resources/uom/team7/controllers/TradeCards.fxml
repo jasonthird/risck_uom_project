@@ -7,7 +7,7 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="300.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uom.team7.controllers.TradeCardsController">
    <children>
-      <Button layoutX="193.0" layoutY="324.0" mnemonicParsing="false" onAction="#TradeButton" prefHeight="37.0" prefWidth="80.0" style="-fx-background-color: #0fea88; -fx-background-radius: 5em;" text="TRADE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="27.0">
+      <Button layoutX="193.0" layoutY="324.0" mnemonicParsing="false" onAction="#tradeButton" prefHeight="37.0" prefWidth="80.0" style="-fx-background-color: #0fea88; -fx-background-radius: 5em;" text="TRADE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="27.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -68,7 +68,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="closeButton" layoutX="29.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#BackButton" prefHeight="16.0" prefWidth="80.0" style="-fx-background-color: #bd1111; -fx-background-radius: 5em;" text="BACK" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="27.0">
+      <Button fx:id="closeButton" layoutX="29.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#backButton" prefHeight="16.0" prefWidth="80.0" style="-fx-background-color: #bd1111; -fx-background-radius: 5em;" text="BACK" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="27.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

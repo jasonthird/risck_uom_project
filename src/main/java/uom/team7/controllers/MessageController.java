@@ -16,7 +16,7 @@ public class MessageController implements Initializable {
 
     @FXML private Button troopLabel;
     @FXML private Slider slider;
-    @FXML private Label countryLabel,countryLabel1,conquerLabel,fortifyLabel;
+    @FXML private Label countryLabelC,countryLabelF,conquerLabel,fortifyLabel;
     private GameLogic game;
     private Country country,country2;
 
@@ -54,11 +54,11 @@ public class MessageController implements Initializable {
         if(fortifyLabel != null) {
             fortifyLabel.setStyle("-fx-text-fill:" + game.getCurrentPlayer().getColor());
         }
-        if(countryLabel1 != null) {
-            countryLabel1.setText(country2.toString());
+        if(countryLabelF != null) {
+            countryLabelF.setText(country2.toString());
         }
-        if(countryLabel != null) {
-            countryLabel.setText(country2.toString());
+        if(countryLabelC != null) {
+            countryLabelC.setText(country2.toString());
         }
     }
 }

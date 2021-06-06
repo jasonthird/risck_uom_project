@@ -20,7 +20,7 @@ public class Country{
         numTroops -= numTroops1;
     }
 
-                                  /*Setters & Getters*/
+    /*Setters & Getters*/
 
     public int getNumTroops() {
         return numTroops;
@@ -40,7 +40,7 @@ public class Country{
 
     public void setNum(int num){ numTroops = num; }
 
-    public LinkedList<Country> getAdjacentCountries() {
+    public List<Country> getAdjacentCountries() {
         return adjacentCountries;
     }
 

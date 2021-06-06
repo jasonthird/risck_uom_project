@@ -27,16 +27,17 @@ public class Player {
     //Check if the player has no owned countries left(dead)
     public boolean statusCheck(){
         if(countriesOwned.isEmpty()){
-            return  this.dead = true;
+            this.dead = true;
         }
         else{
-            return  this.dead = false;
+            this.dead = false;
         }
+        return  dead;
     }
 
     public void removeTroops(int numTroops){ if(unsedTroops > 0){ unsedTroops -= numTroops; } }
 
-                         /*Setters & Getters*/
+    /*Setters & Getters*/
 
     public int getUnsedTroops() { return this.unsedTroops; }
 
