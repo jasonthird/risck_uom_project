@@ -43,6 +43,7 @@ public class BoardController  {
         stage.setScene(new Scene(root, 800, 600));
         stage.centerOnScreen();
         stage.show();
+
     }
 
     //Calculates the attack result,reset flags,updates map and opens fortify and winner window
