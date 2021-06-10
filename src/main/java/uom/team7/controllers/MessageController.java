@@ -43,7 +43,7 @@ public class MessageController implements Initializable {
         this.country = country;
         this.country2 = country2;
 
-        slider.setMax(country.getNumTroops() - 1);
+        slider.setMax((double)country.getNumTroops() - 1);
         slider.setMin(0);
         slider.setValue(0);
         troopLabel.setText("0");
