@@ -5,11 +5,13 @@ import java.util.Random;
 
 public class Cards {
     private final int[] numberCards;
+    private static Random random;
 
     public Cards(){
         // 0 = troop , 1 = cavalry , 2 = artillery
         numberCards = new int[3];
         Arrays.fill(numberCards,0);
+        random = new Random();
     }
 
     //Add the defeated players cards to the winner(defPlayer = dead)
@@ -32,8 +34,7 @@ public class Cards {
     //The player takes only one card if he won until the end of attack phase
     public void winCard(boolean wonCard) {
         if ( wonCard ) {
-            Random r = new Random();
-            numberCards[r.nextInt(3)]++;
+            numberCards[random.nextInt(3)]++;
         }
     }
 

@@ -4,16 +4,17 @@ import java.util.*;
 
 public class World{
 
+    private static Random random;
     private Player[] players;
     private Country[] countries;
     private int numOfTrades;
-
 
     public World(int numPlayers) {
         numOfTrades = 6;
         initializePlayers(numPlayers);
         initializeCountries();
         initializeCountryOwners(countries, players, numPlayers);
+        random = new Random();
     }
 
     //create the players and initialize the unsedTroops
@@ -441,7 +442,7 @@ public class World{
         for(int i = 0; i < 2; i++) {
             if (defender[i] >= attacker[i]) {
                 own.removeNumTroops(1);
-            } else if (attacker[i] > defender[i]) {
+            } else {
                 enemy.removeNumTroops(1);
             }
         }
@@ -534,8 +535,7 @@ public class World{
 
     //Simulates the die roll.Returns a number 1-6.
     public static int roll(){
-        Random r = new Random();
-        return  ( r.nextInt(6));
+        return  (random.nextInt(6));
     }
 
 
