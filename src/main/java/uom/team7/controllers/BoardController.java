@@ -2,6 +2,8 @@ package uom.team7.controllers;
 
 
 import java.io.IOException;
+
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -283,7 +285,12 @@ public class BoardController  {
         game.setFlag(false);
     }
 
+    @FXML
+    public void exitApplication(ActionEvent event) {
+        System.out.println("exit");
+        Platform.exit();
 
+    }
 
     /*Setters & Getters*/
 

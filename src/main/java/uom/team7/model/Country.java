@@ -44,6 +44,10 @@ public class Country{
         return adjacentCountries;
     }
 
+    public boolean checkIfAdjacent(Country otherCountry){
+        return (this.getAdjacentCountries().contains(otherCountry));
+    }
+
     public String toString(){
         return  this.name ;
     }

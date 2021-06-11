@@ -366,20 +366,37 @@ public class World{
         countries[41].adjacentCountries.add(countries[40]);
     }
 
-    public  boolean findPath(Country country,Country country2){
-        for(Country c: country.getAdjacentCountries()){
-            if(c.getOwner() == country.getOwner()) {
-                if (c.getAdjacentCountries().contains(country2)){ return  true;}
-                for (Country c1 : c.getAdjacentCountries()) {
-                    if (c1.getAdjacentCountries().contains(country2) && c1.getOwner() == country.getOwner() || c1.equals(country2)) {
-                        return true;
-                    }
+//    public  boolean findPath(Country country,Country country2){
+//        for(Country c: country.getAdjacentCountries()){
+//            if(c.getOwner() == country.getOwner()) {
+//                if (c.getAdjacentCountries().contains(country2)){ return  true;}
+//                for (Country c1 : c.getAdjacentCountries()) {
+//                    if (c1.getAdjacentCountries().contains(country2) && c1.getOwner() == country.getOwner() || c1.equals(country2)) {
+//                        return true;
+//                    }
+//                }
+//            }
+//        }
+//        return false;
+//    }
+    public boolean findPath(Country country0, Country country1){
+        LinkedList<Country> visited = new LinkedList<Country>();
+        return (findPath(country0,country1,visited));
+    }
+    public boolean findPath(Country country0, Country country1,LinkedList<Country> visited){
+        if (country0==country1 && visited.getFirst().getOwner()== country0.getOwner())return true;
+        if (visited.contains(country0)) return false;
+        visited.add(country0);
+        for (Country c: country0.adjacentCountries){
+            if (c.getOwner()==visited.getFirst().getOwner()) {
+                boolean possible = findPath(c, country1, visited);
+                if (possible) {
+                    return true;
                 }
             }
         }
         return false;
     }
-
     //initialize country owners
     public  void initializeCountryOwners(Country[] countries, Player[] players, int numPlayers){
         Collections.shuffle(Arrays.asList(countries));

@@ -23,6 +23,7 @@ public class StartMenuController {
     @FXML
     private void exitButton() {
         Platform.exit();
+        System.exit(0);
     }
 
     @FXML
