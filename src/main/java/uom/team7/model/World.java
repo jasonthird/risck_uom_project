@@ -486,6 +486,7 @@ public class World{
     //Calculate the attack result
     public boolean attackResult(Country own, Country enemy){
         if(enemy.getNumTroops() <= 0) {
+            enemy.getOwner().statusCheck();
             if(!own.getOwner().isWonCard()){
                 own.getOwner().setWonCard(true);
             }
